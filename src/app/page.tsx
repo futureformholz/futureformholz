@@ -42,6 +42,7 @@ export default function HomePage() {
               alt="Future Form Holz Logo"
               fill
               className="object-cover"
+              sizes="(max-width: 640px) 96px, 112px"
               priority
             />
           </div>
@@ -89,7 +90,7 @@ export default function HomePage() {
               </p>
             </div>
             <div>
-              <p className="text-2xl sm:text-3xl font-serif text-white">350+</p>
+              <p className="text-2xl sm:text-3xl font-serif text-white">500+</p>
               <p className="text-[11px] font-mono uppercase tracking-wider text-[#99948a] mt-1">
                 Originalwerke in Galerie
               </p>

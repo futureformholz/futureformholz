@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "predev": "node scripts/sync-gallery.mjs",
+    "prebuild": "node scripts/sync-gallery.mjs",
+    "sync-gallery": "node scripts/sync-gallery.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
