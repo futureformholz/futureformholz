@@ -29,8 +29,32 @@ export default function MasonryLightbox({
 }: MasonryLightboxProps) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const currentIndex = image ? images.findIndex((img) => img.id === image.id) : -1;
+
+  // Reset loading state when active image changes
+  useEffect(() => {
+    setIsImageLoaded(false);
+  }, [image?.id]);
+
+  // Preload previous and next image in background for instant navigation
+  useEffect(() => {
+    if (!image || images.length <= 1) return;
+    const nextImg = images[(currentIndex + 1) % images.length];
+    const prevImg = images[(currentIndex - 1 + images.length) % images.length];
+
+    if (typeof window !== 'undefined') {
+      if (nextImg?.src) {
+        const imgNext = new window.Image();
+        imgNext.src = nextImg.src;
+      }
+      if (prevImg?.src) {
+        const imgPrev = new window.Image();
+        imgPrev.src = prevImg.src;
+      }
+    }
+  }, [currentIndex, image, images]);
 
   const handleNext = useCallback(() => {
     if (currentIndex === -1) return;
@@ -179,7 +203,7 @@ export default function MasonryLightbox({
 
         {/* The Image Element */}
         <div
-          className={`relative max-w-full max-h-full transition-transform duration-300 ease-out cursor-pointer ${
+          className={`relative max-w-full max-h-full transition-transform duration-300 ease-out cursor-pointer flex items-center justify-center ${
             isZoomed ? 'scale-135 sm:scale-150 cursor-zoom-out' : 'scale-100 cursor-zoom-in'
           }`}
           onClick={(e) => {
@@ -187,13 +211,24 @@ export default function MasonryLightbox({
             setIsZoomed(!isZoomed);
           }}
         >
+          {!isImageLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-10 h-10 border-2 border-[#a87948] border-t-transparent rounded-full animate-spin" />
+            </div>
+          )}
+
           <Image
             src={image.src}
             alt={image.title}
             width={image.width || 1920}
             height={image.height || 1080}
             priority
-            className="max-h-[82vh] sm:max-h-[88vh] w-auto max-w-[95vw] object-contain shadow-2xl select-none"
+            quality={85}
+            sizes="(max-width: 1920px) 95vw, 1920px"
+            onLoad={() => setIsImageLoaded(true)}
+            className={`max-h-[82vh] sm:max-h-[88vh] w-auto max-w-[95vw] object-contain shadow-2xl select-none transition-opacity duration-300 ${
+              isImageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
           />
         </div>
 

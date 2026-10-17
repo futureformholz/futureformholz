@@ -29,7 +29,7 @@ export default function ShopPage() {
       category: 'Lichterspitzen',
       details: 'Feinste erzgebirgische Holzkunst mit integrierter LED-Beleuchtung',
       tag: 'Bestseller',
-      image: '/gallery/Designer.png',
+      image: '/gallery/1771610067899.webp',
       link: 'https://futureformholz.etsy.com',
     },
     {
@@ -37,7 +37,7 @@ export default function ShopPage() {
       category: 'Schwibbögen & Lichtkunst',
       details: 'Massiver Eichensockel mit Schlägel & Eisen, illuminierte Schneeberger Bergparade und LED Stripes',
       tag: 'Kundenfavorit',
-      image: '/gallery/1775485307496.png',
+      image: '/gallery/1775485307496.webp',
       link: 'https://futureformholz.etsy.com',
     },
     {
@@ -45,7 +45,7 @@ export default function ShopPage() {
       category: 'Personalisierte Unikate',
       details: 'Individuell gefräst mit Ihrem Haus und Familiennamen',
       tag: 'Auf Bestellung',
-      image: '/gallery/1790141401993.png',
+      image: '/gallery/1774685651355.webp',
       link: 'https://futureformholz.etsy.com',
     },
   ];

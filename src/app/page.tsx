@@ -24,10 +24,12 @@ export default function HomePage() {
         {/* Cinematic Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/gallery/20260406_163633.jpg"
+            src="/gallery/20260406_163633.webp"
             alt="Future Form Holz Werkstatt und Lichtkunst auf der Werkbank"
             fill
             priority
+            quality={80}
+            sizes="100vw"
             className="object-cover object-center opacity-45 scale-102 transition-transform duration-1000 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#181715] via-[#181715]/40 to-black/60" />

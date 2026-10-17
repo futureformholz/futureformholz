@@ -27,10 +27,12 @@ export default function UeberUnsPage() {
       <section className="relative bg-[#181715] text-[#eae6de] py-24 sm:py-36 px-6 sm:px-8 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/gallery/20260525_115254.jpg"
+            src="/gallery/20260406_163633.webp"
             alt="Handgefertigter illuminierter Schwibbogen in der Werkstatt"
             fill
             priority
+            quality={80}
+            sizes="100vw"
             className="object-cover opacity-30 object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#181715] via-[#181715]/75 to-black/85" />

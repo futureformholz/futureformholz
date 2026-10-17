@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import {
   Maximize2,
@@ -14,6 +14,7 @@ import {
   Wrench,
   Compass,
   Check,
+  Loader2,
 } from 'lucide-react';
 import {
   WEBSITE_GALLERY,
@@ -22,6 +23,71 @@ import {
   WebsiteImage,
 } from '@/data/websiteGalleryData';
 import MasonryLightbox from './MasonryLightbox';
+
+function GalleryCard({
+  image,
+  onClick,
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw',
+}: {
+  image: WebsiteImage;
+  onClick: () => void;
+  sizes?: string;
+}) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div
+      onClick={onClick}
+      className="break-inside-avoid group relative cursor-pointer overflow-hidden rounded-xs bg-[#f4f1ea] border border-[#eae6de] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-[#a87948]"
+    >
+      {/* Aspect-ratio container prevents Cumulative Layout Shift (CLS) */}
+      <div
+        className="relative w-full overflow-hidden bg-[#e8e4db]"
+        style={{
+          aspectRatio: image.ratio
+            ? `${image.ratio}`
+            : image.width && image.height
+            ? `${image.width} / ${image.height}`
+            : '4/3',
+        }}
+      >
+        {/* Subtle skeleton shimmer animation while image is loading */}
+        {!isLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-r from-[#e8e4db] via-[#f4f1ea] to-[#e8e4db] animate-pulse" />
+        )}
+
+        <Image
+          src={image.thumbSrc || image.src}
+          alt={`${image.category} - ${image.title}`}
+          width={image.width || 800}
+          height={image.height || 600}
+          sizes={sizes}
+          quality={75}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-104 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+
+        {/* Category badge watermark on top */}
+        <div className="absolute top-2.5 left-2.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+          <span className="text-[9px] font-mono uppercase tracking-wider bg-black/70 text-white px-2 py-0.5 backdrop-blur-xs rounded-xs">
+            {image.category}
+          </span>
+        </div>
+
+        {/* Subtle dark overlay with expand icon on hover */}
+        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <span className="p-3 bg-black/60 text-white rounded-full backdrop-blur-xs flex items-center justify-center shadow-lg border border-white/20 transform scale-90 group-hover:scale-100 transition-transform">
+            <Maximize2 className="w-4 h-4" />
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const CATEGORY_META: Record<
   string,
@@ -164,6 +230,30 @@ export default function MasonryGallery() {
     setVisibleCount(filteredImages.length);
   };
 
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  // Progressive background loading via IntersectionObserver
+  useEffect(() => {
+    if (viewMode !== 'filter') return;
+    const sentinel = loadMoreRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => {
+            if (prev >= filteredImages.length) return prev;
+            return Math.min(prev + 24, filteredImages.length);
+          });
+        }
+      },
+      { rootMargin: '450px' }
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [viewMode, filteredImages.length]);
+
   return (
     <section id="galerie" className="py-24 sm:py-32 px-6 sm:px-8 max-w-7xl mx-auto scroll-mt-12">
       {/* Section Header */}
@@ -265,7 +355,7 @@ export default function MasonryGallery() {
           })}
         </div>
 
-        {/* Optional Subcategory Filter Bar (e.g. for Outdoor: Terrassenüberdachung) */}
+        {/* Optional Subcategory Filter Bar */}
         {viewMode === 'filter' && availableSubcategories.length > 0 && (
           <div className="flex items-center space-x-2 pt-3 pb-1 border-t border-[#eae6de]/60 mt-3 overflow-x-auto no-scrollbar">
             <span className="text-[11px] font-mono uppercase tracking-wider text-[#8b877f] mr-1">
@@ -338,44 +428,21 @@ export default function MasonryGallery() {
           ) : (
             <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5 sm:gap-6 space-y-5 sm:space-y-6">
               {displayedImages.map((image) => (
-                <div
+                <GalleryCard
                   key={image.id}
+                  image={image}
                   onClick={() => setActiveImage(image)}
-                  className="break-inside-avoid group relative cursor-pointer overflow-hidden rounded-xs bg-[#f4f1ea] border border-[#eae6de] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-[#a87948]"
-                >
-                  <div className="relative w-full overflow-hidden bg-neutral-900">
-                    <Image
-                      src={image.src}
-                      alt={`${image.category} - ${image.title}`}
-                      width={image.width || 800}
-                      height={image.height || 600}
-                      className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-104"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                      loading="lazy"
-                    />
-
-                    {/* Category badge watermark on top */}
-                    <div className="absolute top-2.5 left-2.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <span className="text-[9px] font-mono uppercase tracking-wider bg-black/70 text-white px-2 py-0.5 backdrop-blur-xs rounded-xs">
-                        {image.category}
-                      </span>
-                    </div>
-
-                    {/* Subtle dark overlay with expand icon on hover */}
-                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="p-3 bg-black/60 text-white rounded-full backdrop-blur-xs flex items-center justify-center shadow-lg border border-white/20 transform scale-90 group-hover:scale-100 transition-transform">
-                        <Maximize2 className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                />
               ))}
             </div>
           )}
 
-          {/* Load More Bar */}
+          {/* Load More Bar and Intersection Sentinel */}
           {displayedImages.length < filteredImages.length && (
-            <div className="mt-16 pt-10 border-t border-[#eae6de] flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div
+              ref={loadMoreRef}
+              className="mt-16 pt-10 border-t border-[#eae6de] flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
               <button
                 onClick={handleLoadMore}
                 className="w-full sm:w-auto px-8 py-3.5 bg-[#181715] hover:bg-[#a87948] text-white text-xs uppercase tracking-[0.2em] font-medium transition-colors flex items-center justify-center space-x-2 cursor-pointer shadow-md"
@@ -436,28 +503,12 @@ export default function MasonryGallery() {
                 {/* Group Masonry Grid */}
                 <div className="columns-1 sm:columns-2 lg:columns-4 gap-4 space-y-4">
                   {previewImages.map((image) => (
-                    <div
+                    <GalleryCard
                       key={image.id}
+                      image={image}
                       onClick={() => setActiveImage(image)}
-                      className="break-inside-avoid group relative cursor-pointer overflow-hidden rounded-xs bg-[#f4f1ea] border border-[#eae6de] transition-all duration-300 hover:shadow-xl hover:border-[#a87948]"
-                    >
-                      <div className="relative w-full overflow-hidden bg-neutral-900">
-                        <Image
-                          src={image.src}
-                          alt={`${image.category} - ${image.title}`}
-                          width={image.width || 800}
-                          height={image.height || 600}
-                          className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-104"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <span className="p-2.5 bg-black/60 text-white rounded-full backdrop-blur-xs flex items-center justify-center shadow-lg border border-white/20 transform scale-90 group-hover:scale-100 transition-transform">
-                            <Maximize2 className="w-3.5 h-3.5" />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
                   ))}
                 </div>
               </div>
