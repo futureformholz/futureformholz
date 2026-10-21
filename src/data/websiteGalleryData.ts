@@ -1,5 +1,5 @@
 // Automatisch generiert aus C:\Users\steph\Pictures\Website
-// Stand: 2026-10-21T18:25:24.156Z
+// Stand: 2026-10-21T18:42:11.294Z
 
 export interface WebsiteImage {
   id: string;

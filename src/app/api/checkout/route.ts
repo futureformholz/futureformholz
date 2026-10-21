@@ -23,13 +23,23 @@ export async function POST(req: Request) {
     const productId = body.productId || 'erzgebirgs-lichtbogen';
     const isPickup = body.shippingOption === 'pickup';
 
-    const productCatalog: Record<string, { name: string; description: string; price: number; image: string }> = {
+    const productCatalog: Record<
+      string,
+      {
+        name: string;
+        description: string;
+        price: number;
+        image: string;
+        priceId?: string;
+      }
+    > = {
       'erzgebirgs-lichtbogen': {
         name: 'Exklusiver Erzgebirgs-Lichtbogen »Haamitland«',
         description:
           'Handgefertigter Acrylglas-Lichtbogen (500 × 230 mm) auf massivem Eichensockel (550 × 40 × 35 mm) mit Bergparade-Gravur & LED-Licht. Inkl. 12V Netzteil. Lieferzeit: ca. 14 Tage.',
         price: 9900,
         image: '/products/erzgebirgs-lichtbogen/lichtbogen-1.jpg',
+        priceId: process.env.STRIPE_PRICE_HAAMITLAND,
       },
       'schwibbogen-seiffener-kirche': {
         name: 'LED-Holzschwibbogen »Seiffener Kirche«',
@@ -37,6 +47,7 @@ export async function POST(req: Request) {
           'Filigraner Holz-Schwibbogen, bestehend aus 2 identischen Platten, mit Seiffener Kirche, Kurrendesängern, warmer LED-Beleuchtung und stabilem Holzsockel. Inkl. 12V Netzteil. Lieferzeit: ca. 14 Tage.',
         price: 9900,
         image: '/products/erzgebirgischer-led-schwibbogen/seiffener-kirche-1.jpg',
+        priceId: process.env.STRIPE_PRICE_SEIFFENER_KIRCHE,
       },
       'schwibbogen-bergmannstradition': {
         name: 'LED-Holzschwibbogen »Bergmannstradition«',
@@ -44,6 +55,7 @@ export async function POST(req: Request) {
           'Filigraner Holz-Schwibbogen, bestehend aus 2 identischen Platten, mit traditionellen Bergleuten, Schnitzern, Klöpplerin, warmer LED-Beleuchtung und stabilem Holzsockel. Inkl. 12V Netzteil. Lieferzeit: ca. 14 Tage.',
         price: 9900,
         image: '/products/erzgebirgischer-led-schwibbogen/bergmannstradition-1.jpg',
+        priceId: process.env.STRIPE_PRICE_BERGMANNSTRADITION,
       },
       // Aliases
       'erzgebirgischer-led-schwibbogen': {
@@ -52,6 +64,7 @@ export async function POST(req: Request) {
           'Filigraner Holz-Schwibbogen, bestehend aus 2 identischen Platten, mit Seiffener Kirche, warmer LED-Beleuchtung und stabilem Holzsockel. Inkl. 12V Netzteil. Lieferzeit: ca. 14 Tage.',
         price: 9900,
         image: '/products/erzgebirgischer-led-schwibbogen/seiffener-kirche-1.jpg',
+        priceId: process.env.STRIPE_PRICE_SEIFFENER_KIRCHE,
       },
     };
 
@@ -74,7 +87,27 @@ export async function POST(req: Request) {
       }
       const productImages = imageUrl.startsWith('https://') ? [imageUrl] : [];
 
-      const session = await stripe.checkout.sessions.create({
+      // Determine line item: Use pre-configured Stripe Price ID if available, otherwise dynamic price_data
+      const lineItem: any =
+        selectedProduct.priceId && selectedProduct.priceId.startsWith('price_')
+          ? {
+              price: selectedProduct.priceId,
+              quantity,
+            }
+          : {
+              price_data: {
+                currency: 'eur',
+                product_data: {
+                  name: selectedProduct.name,
+                  description: selectedProduct.description,
+                  ...(productImages.length > 0 ? { images: productImages } : {}),
+                },
+                unit_amount: selectedProduct.price, // 99.00 EUR
+              },
+              quantity,
+            };
+
+      const sessionParams: any = {
         mode: 'payment',
         locale: 'de',
         billing_address_collection: 'required',
@@ -91,20 +124,7 @@ export async function POST(req: Request) {
           shipping_mode: isPickup ? 'Selbstabholung' : 'DHL Versand',
           delivery_time: 'ca. 14 Tage',
         },
-        line_items: [
-          {
-            price_data: {
-              currency: 'eur',
-              product_data: {
-                name: selectedProduct.name,
-                description: selectedProduct.description,
-                ...(productImages.length > 0 ? { images: productImages } : {}),
-              },
-              unit_amount: selectedProduct.price, // 99.00 EUR
-            },
-            quantity,
-          },
-        ],
+        line_items: [lineItem],
         shipping_options: [
           {
             shipping_rate_data: {
@@ -125,7 +145,24 @@ export async function POST(req: Request) {
         ],
         success_url: `${origin}/danke?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/online-shop?product=${productId}`,
-      });
+      };
+
+      let session;
+      try {
+        session = await stripe.checkout.sessions.create(sessionParams);
+      } catch (stripeErr: any) {
+        // Resilient fallback: If Stripe rejects due to unreachable image URL (e.g. DNS propagation)
+        if (
+          stripeErr?.message?.toLowerCase().includes('image') &&
+          sessionParams.line_items[0]?.price_data?.product_data?.images
+        ) {
+          console.warn('Stripe image fetch failed, retrying session without image URL...');
+          delete sessionParams.line_items[0].price_data.product_data.images;
+          session = await stripe.checkout.sessions.create(sessionParams);
+        } else {
+          throw stripeErr;
+        }
+      }
 
       return NextResponse.json({ url: session.url });
     }
