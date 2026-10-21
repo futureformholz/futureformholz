@@ -6,10 +6,16 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => ({}));
     const quantity = Math.max(1, parseInt(body.quantity || 1, 10));
 
+    const reqOrigin = req.headers.get('origin');
+    const forwardedHost = req.headers.get('x-forwarded-host') || req.headers.get('host');
+    const forwardedProto = req.headers.get('x-forwarded-proto') || 'https';
+    const computedHostOrigin = forwardedHost ? `${forwardedProto}://${forwardedHost}` : null;
+
     const origin =
-      req.headers.get('origin') ||
+      reqOrigin ||
+      computedHostOrigin ||
       process.env.NEXT_PUBLIC_BASE_URL ||
-      'http://localhost:3000';
+      (process.env.NODE_ENV === 'production' ? 'https://futureformholz.de' : 'http://localhost:3000');
 
     const directPaymentLink = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -60,6 +66,14 @@ export async function POST(req: Request) {
     if (stripeSecretKey && !stripeSecretKey.includes('placeholder')) {
       const stripe = new Stripe(stripeSecretKey);
 
+      // Safe HTTPS image URL preparation for Stripe Live Mode
+      let imageUrl = selectedProduct.image;
+      if (!imageUrl.startsWith('http')) {
+        const baseForImg = origin.startsWith('http') ? origin : `https://${origin}`;
+        imageUrl = `${baseForImg}${selectedProduct.image}`;
+      }
+      const productImages = imageUrl.startsWith('https://') ? [imageUrl] : [];
+
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
         locale: 'de',
@@ -84,7 +98,7 @@ export async function POST(req: Request) {
               product_data: {
                 name: selectedProduct.name,
                 description: selectedProduct.description,
-                images: [`${origin}${selectedProduct.image}`],
+                ...(productImages.length > 0 ? { images: productImages } : {}),
               },
               unit_amount: selectedProduct.price, // 99.00 EUR
             },
@@ -110,7 +124,7 @@ export async function POST(req: Request) {
           },
         ],
         success_url: `${origin}/danke?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${origin}/online-shop`,
+        cancel_url: `${origin}/online-shop?product=${productId}`,
       });
 
       return NextResponse.json({ url: session.url });
