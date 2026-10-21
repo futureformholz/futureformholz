@@ -66,7 +66,7 @@ function GalleryCard({
           loading="lazy"
           decoding="async"
           onLoad={() => setIsLoaded(true)}
-          className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-104 ${
+          className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />

@@ -9,9 +9,9 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Etsy-Shop & Kollektion | Future Form Holz · Stephan Tautenhahn',
+  title: 'Shop & Angebote | Holzarbeiten, Epoxidharz & Acrylglasbilder',
   description:
-    'Handgefertigte Schwibbögen, illuminierte Lichterspitzen und erzgebirgische Holzkunst direkt im offiziellen Etsy-Shop von Future Form Holz kaufen.',
+    'Entdecken Sie handgefertigte Holzarbeiten, Epoxidharz-Unikate, illuminierte Acrylglasbilder, Schwibbögen und Smarthome-Möbel in unseren Shops auf Kleinanzeigen und Etsy.',
 };
 
 export default function ShopPage() {
@@ -58,26 +58,37 @@ export default function ShopPage() {
           <div className="space-y-3">
             <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#a87948] flex items-center gap-2">
               <span className="w-5 h-[1px] bg-[#a87948]" />
-              Offizieller Online-Shop
+              Offizieller Online-Shop & Bestandsliste
             </span>
             <h1 className="text-3xl sm:text-5xl font-serif text-white tracking-tight">
-              Future Form Holz auf Etsy
+              Kollektion auf Kleinanzeigen & Etsy
             </h1>
             <p className="text-sm text-[#a39e94] max-w-xl font-light">
-              Unsere sofort lieferbaren Schwibbögen, Lichterspitzen und Holzgeschenke
-              können Sie sicher und unkompliziert über unseren Etsy-Shop bestellen.
+              Unsere sofort lieferbaren Holzarbeiten, Schwibbögen, Lichterspitzen und Unikate
+              können Sie unkompliziert über Kleinanzeigen oder unseren Etsy-Shop bestellen.
             </p>
           </div>
 
-          <a
-            href="https://futureformholz.etsy.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#181715] bg-[#a87948] hover:bg-[#906233] text-white px-6 py-3.5 shadow-lg transition-colors"
-          >
-            <span>futureformholz.etsy.com öffnen</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a
+              href="https://www.kleinanzeigen.de/s-bestandsliste.html?userId=159516304"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center space-x-2 text-xs font-mono uppercase tracking-widest bg-[#86b817] hover:bg-[#749f13] text-[#121b06] font-bold px-6 py-3.5 shadow-lg transition-all"
+            >
+              <span>Zu meinen Kleinanzeigen</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href="https://futureformholz.etsy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center space-x-2 text-xs font-mono uppercase tracking-widest bg-[#a87948] hover:bg-[#906233] text-white px-6 py-3.5 shadow-lg transition-colors"
+            >
+              <span>Etsy-Shop</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -105,24 +116,33 @@ export default function ShopPage() {
           ))}
         </div>
 
-        {/* ETSY HIGHLIGHT HERO CARD */}
+        {/* SHOP HIGHLIGHT HERO CARD */}
         <div className="bg-[#fcfbf9] border border-[#eae6de] p-8 sm:p-14 text-center max-w-4xl mx-auto mb-20 shadow-sm relative overflow-hidden">
           <div className="w-16 h-16 bg-[#f4f1ea] border border-[#d3cdbf] rounded-full mx-auto flex items-center justify-center text-[#a87948] mb-6">
             <ShoppingBag className="w-7 h-7" />
           </div>
 
           <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#a87948] block mb-2">
-            Verifizierter Etsy-Verkäufer
+            Verifizierte Angebote & Direkter Kauf
           </span>
           <h2 className="text-2xl sm:text-4xl font-serif text-[#181715] mb-4">
-            Besuchen Sie unseren Shop auf Etsy
+            Besuchen Sie unsere Bestandsliste & Shops
           </h2>
           <p className="text-sm text-[#615e57] font-light max-w-xl mx-auto leading-relaxed mb-8">
-            Hier finden Sie aktuelle Kollektionen, detailgetreue Fotos, Kundenbewertungen
-            und sichere Zahlungsmöglichkeiten für unsere erzgebirgischen Holzkunstwerke.
+            Hier finden Sie aktuelle Kollektionen, detailgetreue Fotos, Holzarbeiten, Epoxidharz-Objekte,
+            Acrylglasbilder und Smarthome-Möbel aus unserer Schneeberger Werkstatt.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
+            <a
+              href="https://www.kleinanzeigen.de/s-bestandsliste.html?userId=159516304"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-8 py-3.5 bg-[#86b817] hover:bg-[#749f13] text-[#121b06] text-xs uppercase tracking-[0.2em] font-bold transition-all flex items-center justify-center space-x-2 shadow-lg hover:scale-[1.02]"
+            >
+              <span>Zu meinen Kleinanzeigen</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
             <a
               href="https://futureformholz.etsy.com"
               target="_blank"
@@ -136,7 +156,7 @@ export default function ShopPage() {
               href="/#galerie"
               className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-[#d3cdbf] hover:border-[#181715] text-[#181715] text-xs uppercase tracking-[0.2em] font-medium transition-colors"
             >
-              Fotogalerie (53 Werke) ansehen
+              Fotogalerie ansehen
             </Link>
           </div>
 

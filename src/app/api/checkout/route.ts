@@ -1,0 +1,133 @@
+import { NextResponse } from 'next/server';
+import Stripe from 'stripe';
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json().catch(() => ({}));
+    const quantity = Math.max(1, parseInt(body.quantity || 1, 10));
+
+    const origin =
+      req.headers.get('origin') ||
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      'http://localhost:3000';
+
+    const directPaymentLink = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+
+    const productId = body.productId || 'erzgebirgs-lichtbogen';
+    const isPickup = body.shippingOption === 'pickup';
+
+    const productCatalog: Record<string, { name: string; description: string; price: number; image: string }> = {
+      'erzgebirgs-lichtbogen': {
+        name: 'Exklusiver Erzgebirgs-Lichtbogen »Haamitland«',
+        description:
+          'Handgefertigter Acrylglas-Lichtbogen (500 × 230 mm) auf massivem Eichensockel (550 × 40 × 35 mm) mit Bergparade-Gravur & LED-Licht. Inkl. 12V Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/erzgebirgs-lichtbogen/lichtbogen-1.jpg',
+      },
+      'schwibbogen-seiffener-kirche': {
+        name: 'LED-Holzschwibbogen »Seiffener Kirche«',
+        description:
+          'Filigraner Holz-Schwibbogen, bestehend aus 2 identischen Platten, mit Seiffener Kirche, Kurrendesängern, warmer LED-Beleuchtung und stabilem Holzsockel. Inkl. 12V Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/erzgebirgischer-led-schwibbogen/seiffener-kirche-1.jpg',
+      },
+      'schwibbogen-bergmannstradition': {
+        name: 'LED-Holzschwibbogen »Bergmannstradition«',
+        description:
+          'Filigraner Holz-Schwibbogen, bestehend aus 2 identischen Platten, mit traditionellen Bergleuten, Schnitzern, Klöpplerin, warmer LED-Beleuchtung und stabilem Holzsockel. Inkl. 12V Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/erzgebirgischer-led-schwibbogen/bergmannstradition-1.jpg',
+      },
+      // Aliases
+      'erzgebirgischer-led-schwibbogen': {
+        name: 'LED-Holzschwibbogen »Seiffener Kirche«',
+        description:
+          'Filigraner Holz-Schwibbogen, bestehend aus 2 identischen Platten, mit Seiffener Kirche, warmer LED-Beleuchtung und stabilem Holzsockel. Inkl. 12V Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/erzgebirgischer-led-schwibbogen/seiffener-kirche-1.jpg',
+      },
+    };
+
+    const selectedProduct = productCatalog[productId] || productCatalog['erzgebirgs-lichtbogen'];
+
+    // 1. Direct Stripe Payment Link (e.g. created in Stripe dashboard: https://buy.stripe.com/...)
+    if (directPaymentLink) {
+      return NextResponse.json({ url: directPaymentLink });
+    }
+
+    // 2. Stripe Checkout Session via Stripe API
+    if (stripeSecretKey && !stripeSecretKey.includes('placeholder')) {
+      const stripe = new Stripe(stripeSecretKey);
+
+      const session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        locale: 'de',
+        billing_address_collection: 'required',
+        phone_number_collection: {
+          enabled: true,
+        },
+        shipping_address_collection: {
+          allowed_countries: ['DE', 'AT', 'CH'],
+        },
+        metadata: {
+          product_id: productId,
+          product_name: selectedProduct.name,
+          quantity: String(quantity),
+          shipping_mode: isPickup ? 'Selbstabholung' : 'DHL Versand',
+          delivery_time: 'ca. 14 Tage',
+        },
+        line_items: [
+          {
+            price_data: {
+              currency: 'eur',
+              product_data: {
+                name: selectedProduct.name,
+                description: selectedProduct.description,
+                images: [`${origin}${selectedProduct.image}`],
+              },
+              unit_amount: selectedProduct.price, // 99.00 EUR
+            },
+            quantity,
+          },
+        ],
+        shipping_options: [
+          {
+            shipping_rate_data: {
+              type: 'fixed_amount',
+              fixed_amount: {
+                amount: isPickup ? 0 : 599, // 0.00 EUR for pickup or 5.99 EUR for DHL
+                currency: 'eur',
+              },
+              display_name: isPickup
+                ? 'Kostenfreie Selbstabholung (Werkstatt Schneeberg)'
+                : 'DHL Paketversand (Versichert)',
+              delivery_estimate: {
+                minimum: { unit: 'business_day', value: 12 },
+                maximum: { unit: 'business_day', value: 16 },
+              },
+            },
+          },
+        ],
+        success_url: `${origin}/danke?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${origin}/online-shop`,
+      });
+
+      return NextResponse.json({ url: session.url });
+    }
+
+    // 3. Fallback / Test-Mode when no Stripe key is configured yet in .env.local
+    // Routes directly to the confirmation / thank you page with a clear setup note
+    return NextResponse.json({
+      url: `${origin}/danke?status=success&demo=true`,
+      isDemo: true,
+      message: 'Demo-Modus aktiv: Hinterlege deinen Stripe-Schlüssel in .env.local für echte Zahlungen.',
+    });
+  } catch (error: any) {
+    console.error('Stripe Checkout API Error:', error);
+    return NextResponse.json(
+      { error: error?.message || 'Fehler beim Erstellen der Checkout-Session' },
+      { status: 500 }
+    );
+  }
+}

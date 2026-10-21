@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ExternalLink,
   Cpu,
@@ -11,6 +12,7 @@ import {
   Sliders,
   Maximize2,
   Lightbulb,
+  ShoppingBag,
 } from 'lucide-react';
 import { TIMBER_MATERIALS } from '@/data/teamData';
 
@@ -486,15 +488,13 @@ export default function UeberUnsPage() {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-          <a
-            href="https://futureformholz.etsy.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-4 bg-[#181715] text-white hover:bg-[#a87948] text-xs uppercase tracking-[0.25em] font-medium transition-colors shadow-lg flex items-center space-x-2"
+          <Link
+            href="/online-shop"
+            className="px-8 py-4 bg-[#86b817] text-[#121b06] hover:bg-[#749f13] text-xs uppercase tracking-[0.2em] font-bold transition-colors shadow-lg flex items-center space-x-2 rounded-xs"
           >
-            <span>Auf Etsy kontaktieren & bestellen</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
+            <ShoppingBag className="w-4 h-4" />
+            <span>Zum Online-Shop</span>
+          </Link>
 
           <a
             href="mailto:futureformholz@gmail.com"

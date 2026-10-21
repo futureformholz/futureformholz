@@ -31,7 +31,7 @@ export default function Footer() {
             </div>
 
             <p className="text-sm text-[#a39e94] leading-relaxed max-w-sm font-light">
-              Handgefertigte Schwibbögen, Lichterspitzen und individuelle Holz- und Acrylkunst
+              Holzarbeiten, Epoxidharz-Unikate, Acrylglasbilder und Smarthome-Möbel
               aus Schneeberg im Erzgebirge – präzise gefräst mit eigener Großformat-CNC (200 × 100 cm).
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-[#c5bfae]">
@@ -62,8 +62,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/ueber-uns" className="hover:text-white transition-colors">
-                  Über uns & Werkstatt
+                <Link href="/online-shop" className="hover:text-white transition-colors text-[#a87948] font-medium flex items-center space-x-1">
+                  <span>Online-Shop</span>
+                  <span className="text-[9px] font-mono bg-[#a87948]/20 text-[#a87948] px-1.5 py-0.2 rounded-xs">Shop</span>
                 </Link>
               </li>
               <li>
@@ -72,19 +73,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://futureformholz.etsy.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors flex items-center space-x-1.5 text-[#a87948]"
-                >
-                  <span>Etsy Online-Shop</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
+                <Link href="/ueber-uns" className="hover:text-white transition-colors">
+                  Über uns & Werkstatt
+                </Link>
               </li>
               <li>
-                <Link href="/shop" className="hover:text-white transition-colors">
-                  Shop-Übersicht & Kollektion
+                <Link href="/#kontakt" className="hover:text-white transition-colors">
+                  Individuelle Anfrage
                 </Link>
               </li>
             </ul>
@@ -137,15 +132,10 @@ export default function Footer() {
                   </a>
                 </p>
                 <p>
-                  <span className="text-[#c5bfae]">Etsy:</span>{' '}
-                  <a
-                    href="https://futureformholz.etsy.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white transition-colors text-[#a87948]"
-                  >
-                    futureformholz.etsy.com
-                  </a>
+                  <span className="text-[#c5bfae]">Shop:</span>{' '}
+                  <Link href="/online-shop" className="hover:text-white transition-colors text-[#86b817] font-medium">
+                    Zum Online-Shop
+                  </Link>
                 </p>
               </div>
 

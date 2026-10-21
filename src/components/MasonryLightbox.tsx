@@ -2,6 +2,7 @@
 
 import React, { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   X,
   ChevronLeft,
@@ -11,6 +12,8 @@ import {
   ZoomIn,
   ZoomOut,
   ArrowUpRight,
+  ExternalLink,
+  ShoppingBag,
 } from 'lucide-react';
 import { WebsiteImage } from '@/data/websiteGalleryData';
 
@@ -247,23 +250,38 @@ export default function MasonryLightbox({
         )}
       </div>
 
-      {/* Bottom Bar: Clean CTA, without photo descriptions */}
+      {/* Bottom Bar: Clean Category & Direct CTAs */}
       <div
-        className="relative z-20 px-6 sm:px-10 py-3.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-between"
+        className="relative z-20 px-4 sm:px-8 py-3.5 bg-gradient-to-t from-black/85 via-black/50 to-transparent flex items-center justify-between border-t border-white/10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="text-[11px] font-mono tracking-wider text-[#a39e94]">
-          Future Form Holz · Schneeberg
+        <div className="flex items-center space-x-2.5">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#a87948] bg-black/60 px-2.5 py-1 rounded-xs border border-[#a87948]/30">
+            {image.category}
+          </span>
+          <span className="text-[11px] font-mono text-[#a39e94] hidden sm:inline">
+            Future Form Holz · Schneeberg
+          </span>
         </div>
 
-        <a
-          href="#kontakt"
-          onClick={onClose}
-          className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-medium px-4 py-2 bg-[#a87948] hover:bg-[#906233] text-white transition-colors rounded-xs shadow-lg"
-        >
-          <span>Werk anfragen</span>
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </a>
+        <div className="flex items-center space-x-2.5 shrink-0">
+          <Link
+            href="/online-shop"
+            onClick={onClose}
+            className="inline-flex items-center space-x-1.5 text-xs uppercase tracking-wider font-semibold px-3 py-1.5 bg-[#86b817] hover:bg-[#749f13] text-[#121b06] transition-colors rounded-xs shadow-md font-mono"
+          >
+            <ShoppingBag className="w-3.5 h-3.5" />
+            <span>Online-Shop</span>
+          </Link>
+          <a
+            href="#kontakt"
+            onClick={onClose}
+            className="inline-flex items-center space-x-1.5 text-xs uppercase tracking-[0.2em] font-medium px-3.5 py-1.5 bg-[#a87948] hover:bg-[#906233] text-white transition-colors rounded-xs shadow-lg"
+          >
+            <span>Werk anfragen</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </div>
     </div>
   );

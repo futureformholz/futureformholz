@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ShoppingBag } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,8 +21,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Startseite', href: '/' },
+    { name: 'Online-Shop', href: '/online-shop', badge: 'Shop' },
+    { name: 'Fotogalerie', href: '/#galerie' },
     { name: 'Über uns', href: '/ueber-uns' },
-    { name: 'Etsy-Shop', href: '/shop', badge: 'Online' },
   ];
 
   return (
@@ -81,23 +82,22 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right CTA */}
-        <div className="hidden md:flex items-center space-x-4">
-          <a
-            href="https://futureformholz.etsy.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-xs uppercase tracking-[0.18em] font-medium px-3.5 py-2 text-[#a87948] hover:text-[#906233] transition-colors font-mono"
+        {/* Right CTA: Focus on Online-Shop and Anfrage */}
+        <div className="hidden md:flex items-center space-x-3">
+          <Link
+            href="/online-shop"
+            className="inline-flex items-center text-xs uppercase tracking-[0.18em] font-bold px-4 py-2 bg-[#86b817] hover:bg-[#749f13] text-[#121b06] shadow-sm hover:shadow-md transition-all rounded-xs border border-[#9ed61c]/50"
+            title="Zum Online-Shop"
           >
-            <span>etsy.com</span>
-            <ExternalLink className="w-3 h-3 ml-1" />
-          </a>
+            <ShoppingBag className="w-3.5 h-3.5 mr-1.5" />
+            <span>Online-Shop</span>
+          </Link>
           <Link
             href="/#kontakt"
-            className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-medium px-4 py-2.5 border border-[#181715] text-[#181715] hover:bg-[#181715] hover:text-[#fcfbf9] transition-all duration-200 group"
+            className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-medium px-3.5 py-2 border border-[#181715] text-[#181715] hover:bg-[#181715] hover:text-[#fcfbf9] transition-all duration-200 group rounded-xs"
           >
-            <span>Anfrage senden</span>
-            <ArrowUpRight className="w-3.5 h-3.5 ml-1.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>Anfrage</span>
+            <ArrowUpRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
@@ -114,7 +114,7 @@ export default function Navbar() {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-x-0 top-full bg-[#fcfbf9] border-b border-[#eae6de] shadow-xl px-6 py-8 transition-all">
-          <div className="flex flex-col space-y-6">
+          <div className="flex flex-col space-y-4">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -135,22 +135,25 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <a
-              href="https://futureformholz.etsy.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full text-center text-xs uppercase tracking-[0.2em] font-medium py-3 border border-[#a87948] text-[#a87948] hover:bg-[#a87948] hover:text-white transition-colors flex items-center justify-center space-x-1.5"
-            >
-              <span>Zum Etsy-Shop</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-            <Link
-              href="/#kontakt"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center text-xs uppercase tracking-[0.2em] font-medium py-3 border border-[#181715] bg-[#181715] text-[#fcfbf9] hover:bg-[#a87948] hover:border-[#a87948] transition-colors"
-            >
-              Unverbindliche Anfrage
-            </Link>
+
+            <div className="pt-2 space-y-3">
+              <Link
+                href="/online-shop"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center text-xs uppercase tracking-[0.2em] font-bold py-3.5 bg-[#86b817] hover:bg-[#749f13] text-[#121b06] transition-colors flex items-center justify-center space-x-2 rounded-xs shadow-sm"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>Zum Online-Shop</span>
+              </Link>
+
+              <Link
+                href="/#kontakt"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center text-xs uppercase tracking-[0.2em] font-medium py-3 border border-[#181715] bg-[#181715] text-[#fcfbf9] hover:bg-[#a87948] hover:border-[#a87948] transition-colors rounded-xs"
+              >
+                Unverbindliche Anfrage
+              </Link>
+            </div>
           </div>
         </div>
       )}
