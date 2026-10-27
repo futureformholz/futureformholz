@@ -79,6 +79,9 @@ export const metadata: Metadata = {
       'Exklusive Holzarbeiten, Epoxidharz-Unikate, Acrylglasbilder und Smarthome-Möbel aus Schneeberg im Erzgebirge.',
     images: ['/logo.png'],
   },
+  verification: {
+    google: 'CljLYVWdhRmIkVzKQKslWYFnE39MIbTlfKQfh70WeU0',
+  },
 };
 
 export default function RootLayout({

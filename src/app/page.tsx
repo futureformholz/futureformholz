@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     'CNC Fräsung 200x100',
     'LED Schwibbogen',
   ],
+  verification: {
+    google: 'CljLYVWdhRmIkVzKQKslWYFnE39MIbTlfKQfh70WeU0',
+  },
 };
 
 export default function HomePage() {
