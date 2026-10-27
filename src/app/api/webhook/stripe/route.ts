@@ -151,8 +151,17 @@ export async function POST(req: Request) {
       const productName =
         session.metadata?.product_name || 'Erzgebirgischer LED-Schwibbogen (Handgefertigt)';
 
+      const rawEngravingText =
+        session.metadata?.engraving_text || session.metadata?.engravingText || '';
+      const engravingText = rawEngravingText.trim();
+      const hasEngraving =
+        session.metadata?.engraving_enabled === 'true' || engravingText.length > 0;
+
       console.log('🎉 [Stripe Webhook] Neue bezahlte Bestellung erhalten:');
       console.log(`- Artikel: ${productName}`);
+      if (hasEngraving) {
+        console.log(`- ✏️ Individuelle Sockelgravur: "${engravingText}"`);
+      }
       console.log(`- Kunde: ${customerName} (${customerEmail}, Tel: ${customerPhone})`);
       console.log(`- Lieferadresse: ${shippingName}, ${street}${street2}, ${zip} ${city}, ${country}`);
       console.log(`- Betrag: ${amountTotal}`);
@@ -175,6 +184,7 @@ export async function POST(req: Request) {
           orderId,
           orderDate,
           productName,
+          engravingText: hasEngraving ? engravingText : null,
           customerName,
           customerEmail,
           customerPhone,
@@ -196,7 +206,9 @@ export async function POST(req: Request) {
 
       // 2. Benachrichtigungs-E-Mail an Inhaber (futureformholz@gmail.com)
       const targetEmail = process.env.NOTIFICATION_EMAIL || 'futureformholz@gmail.com';
-      const ownerEmailSubject = `🎉 Neue Bestellung: ${productName} von ${customerName} (${amountTotal})`;
+      const ownerEmailSubject = hasEngraving
+        ? `🎉 Neue Bestellung MIT SOCKELGRAVUR »${engravingText}«: ${productName} von ${customerName} (${amountTotal})`
+        : `🎉 Neue Bestellung: ${productName} von ${customerName} (${amountTotal})`;
       const ownerEmailHtml = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #181715; line-height: 1.5;">
           <div style="background-color: #181715; padding: 24px; text-align: center; border-radius: 4px 4px 0 0;">
@@ -216,6 +228,25 @@ export async function POST(req: Request) {
               Ein Kunde hat soeben über den Online-Shop <strong>${productName}</strong> bestellt und per Stripe bezahlt.
             </p>
 
+            ${
+              hasEngraving
+                ? `
+            <div style="background-color: #fff9ed; border: 2px solid #a87948; padding: 18px; margin: 20px 0; border-radius: 4px;">
+              <div style="font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: #a87948; margin-bottom: 8px;">
+                ⚠️ WICHTIG: KUNDE WÜNSCHT INDIVIDUELLE SOCKELGRAVUR (+15 €)
+              </div>
+              <div style="background-color: #ffffff; border: 1px dashed #a87948; padding: 12px 16px; border-radius: 4px; margin: 8px 0; text-align: center;">
+                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #8b877f; display: block; margin-bottom: 4px;">Gewünschter Sockel-Gravurtext (max. 10 Zeichen):</span>
+                <span style="font-family: 'Courier New', monospace; font-size: 24px; font-weight: bold; color: #181715; letter-spacing: 3px;">»${engravingText}«</span>
+              </div>
+              <p style="margin: 6px 0 0 0; font-size: 12px; color: #615e57;">
+                Bitte diesen Text vor dem Einspannen und Fräsen des massiven Eichensockels prüfen.
+              </p>
+            </div>
+            `
+                : ''
+            }
+
             <div style="background-color: #f4f1ea; padding: 16px; border: 1px solid #eae6de; margin: 20px 0; border-radius: 4px;">
               <h3 style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #a87948; margin-top: 0;">
                 Bestellübersicht
@@ -225,6 +256,16 @@ export async function POST(req: Request) {
                   <td style="padding: 4px 0; color: #615e57;">Artikel:</td>
                   <td style="padding: 4px 0; font-weight: bold;">${productName}</td>
                 </tr>
+                ${
+                  hasEngraving
+                    ? `
+                <tr>
+                  <td style="padding: 4px 0; color: #a87948; font-weight: bold;">Individuelle Sockelgravur:</td>
+                  <td style="padding: 4px 0; font-weight: bold; color: #a87948; font-family: monospace;">»${engravingText}« (+15,00 €)</td>
+                </tr>
+                `
+                    : ''
+                }
                 <tr>
                   <td style="padding: 4px 0; color: #615e57;">Gesamtbetrag:</td>
                   <td style="padding: 4px 0; font-weight: bold; color: #a87948;">${amountTotal}</td>
@@ -288,7 +329,9 @@ export async function POST(req: Request) {
 
       // 3. Bestätigungs-E-Mail an den KUNDEN (Auftragsbestätigung & Werkstattinfo)
       if (customerEmail && customerEmail.includes('@')) {
-        const customerEmailSubject = `Bestellbestätigung: Ihr handgefertigtes Werk von Future Form Holz (${amountTotal})`;
+        const customerEmailSubject = hasEngraving
+          ? `Bestellbestätigung: Ihr handgefertigtes Werk mit Gravur »${engravingText}« von Future Form Holz (${amountTotal})`
+          : `Bestellbestätigung: Ihr handgefertigtes Werk von Future Form Holz (${amountTotal})`;
         const customerEmailHtml = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #181715; line-height: 1.6;">
             <div style="background-color: #181715; padding: 28px 24px; text-align: center; border-radius: 4px 4px 0 0;">
@@ -309,6 +352,25 @@ export async function POST(req: Request) {
                 wir haben Ihre Bestellung und die Zahlung über Stripe erfolgreich erhalten. Wir freuen uns sehr, Ihr persönliches Stück erzgebirgischer Handwerkskunst für Sie in unserer Schneeberger Werkstatt zu fertigen.
               </p>
 
+              ${
+                hasEngraving
+                  ? `
+              <div style="background-color: #fdfaf5; border: 1px solid #e2ded5; border-left: 3px solid #a87948; padding: 18px; margin: 20px 0; border-radius: 2px;">
+                <h4 style="margin: 0 0 6px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #a87948;">
+                  Ihre persönliche Wunsch-Sockelgravur:
+                </h4>
+                <p style="margin: 6px 0; font-family: 'Courier New', monospace; font-size: 20px; font-weight: bold; color: #181715; letter-spacing: 2px;">
+                  »${engravingText}«
+                </p>
+                <p style="margin: 6px 0 0 0; font-size: 12px; color: #8b877f; line-height: 1.5;">
+                  Ihr Eichensockel wird in unserer Schneeberger Werkstatt individuell mit diesem Schriftzug gefertigt.<br>
+                  <em>Hinweis: Da dieser Artikel speziell für Sie angefertigt wird, besteht gemäß § 312g Abs. 2 Nr. 1 BGB kein Widerrufsrecht.</em>
+                </p>
+              </div>
+              `
+                  : ''
+              }
+
               <div style="background-color: #f4f1ea; padding: 20px; border: 1px solid #eae6de; margin: 24px 0; border-radius: 4px;">
                 <h3 style="font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: #a87948; margin-top: 0; border-bottom: 1px solid #e2ded5; padding-bottom: 8px;">
                   Ihre Bestelldetails
@@ -318,6 +380,16 @@ export async function POST(req: Request) {
                     <td style="padding: 6px 0; color: #615e57;">Artikel:</td>
                     <td style="padding: 6px 0; font-weight: bold; text-align: right;">${productName}</td>
                   </tr>
+                  ${
+                    hasEngraving
+                      ? `
+                  <tr>
+                    <td style="padding: 6px 0; color: #a87948; font-weight: bold;">Sockelgravur:</td>
+                    <td style="padding: 6px 0; font-weight: bold; text-align: right; color: #a87948; font-family: monospace;">»${engravingText}« (+15,00 €)</td>
+                  </tr>
+                  `
+                      : ''
+                  }
                   <tr>
                     <td style="padding: 6px 0; color: #615e57;">Gesamtbetrag:</td>
                     <td style="padding: 6px 0; font-weight: bold; color: #a87948; text-align: right; font-size: 15px;">${amountTotal}</td>

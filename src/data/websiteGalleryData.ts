@@ -1,5 +1,5 @@
 // Automatisch generiert aus C:\Users\steph\Pictures\Website
-// Stand: 2026-10-21T19:15:55.078Z
+// Stand: 2026-10-27T18:52:52.116Z
 
 export interface WebsiteImage {
   id: string;
@@ -5565,28 +5565,6 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
   },
   {
     "id": "img-499",
-    "filename": "20260225_193848.webp",
-    "src": "/gallery/20260225_193848.webp",
-    "thumbSrc": "/gallery/thumbs/20260225_193848.webp",
-    "width": 1920,
-    "height": 897,
-    "ratio": 2.14,
-    "title": "20260225 193848",
-    "category": "Schwibbögen & Fensterbilder"
-  },
-  {
-    "id": "img-500",
-    "filename": "20260225_193858.webp",
-    "src": "/gallery/20260225_193858.webp",
-    "thumbSrc": "/gallery/thumbs/20260225_193858.webp",
-    "width": 1920,
-    "height": 897,
-    "ratio": 2.14,
-    "title": "20260225 193858",
-    "category": "Schwibbögen & Fensterbilder"
-  },
-  {
-    "id": "img-501",
     "filename": "20260225_200903.webp",
     "src": "/gallery/20260225_200903.webp",
     "thumbSrc": "/gallery/thumbs/20260225_200903.webp",
@@ -5597,7 +5575,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-502",
+    "id": "img-500",
     "filename": "20260228_113037.webp",
     "src": "/gallery/20260228_113037.webp",
     "thumbSrc": "/gallery/thumbs/20260228_113037.webp",
@@ -5608,7 +5586,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-503",
+    "id": "img-501",
     "filename": "20260228_113046.webp",
     "src": "/gallery/20260228_113046.webp",
     "thumbSrc": "/gallery/thumbs/20260228_113046.webp",
@@ -5619,7 +5597,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-504",
+    "id": "img-502",
     "filename": "20260228_113430.webp",
     "src": "/gallery/20260228_113430.webp",
     "thumbSrc": "/gallery/thumbs/20260228_113430.webp",
@@ -5630,7 +5608,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-505",
+    "id": "img-503",
     "filename": "20260304_192618.webp",
     "src": "/gallery/20260304_192618.webp",
     "thumbSrc": "/gallery/thumbs/20260304_192618.webp",
@@ -5641,7 +5619,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-506",
+    "id": "img-504",
     "filename": "20260319_180038.webp",
     "src": "/gallery/20260319_180038.webp",
     "thumbSrc": "/gallery/thumbs/20260319_180038.webp",
@@ -5652,7 +5630,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-507",
+    "id": "img-505",
     "filename": "20260319_180044.webp",
     "src": "/gallery/20260319_180044.webp",
     "thumbSrc": "/gallery/thumbs/20260319_180044.webp",
@@ -5663,7 +5641,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-508",
+    "id": "img-506",
     "filename": "20260319_180101.webp",
     "src": "/gallery/20260319_180101.webp",
     "thumbSrc": "/gallery/thumbs/20260319_180101.webp",
@@ -5674,7 +5652,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-509",
+    "id": "img-507",
     "filename": "20260319_192138.webp",
     "src": "/gallery/20260319_192138.webp",
     "thumbSrc": "/gallery/thumbs/20260319_192138.webp",
@@ -5685,7 +5663,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-510",
+    "id": "img-508",
     "filename": "20260319_192149.webp",
     "src": "/gallery/20260319_192149.webp",
     "thumbSrc": "/gallery/thumbs/20260319_192149.webp",
@@ -5696,7 +5674,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-511",
+    "id": "img-509",
     "filename": "20260325_193532.webp",
     "src": "/gallery/20260325_193532.webp",
     "thumbSrc": "/gallery/thumbs/20260325_193532.webp",
@@ -5707,7 +5685,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-512",
+    "id": "img-510",
     "filename": "20260401_203245.webp",
     "src": "/gallery/20260401_203245.webp",
     "thumbSrc": "/gallery/thumbs/20260401_203245.webp",
@@ -5718,7 +5696,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-513",
+    "id": "img-511",
     "filename": "20260401_203253.webp",
     "src": "/gallery/20260401_203253.webp",
     "thumbSrc": "/gallery/thumbs/20260401_203253.webp",
@@ -5729,7 +5707,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-514",
+    "id": "img-512",
     "filename": "20260405_091805.webp",
     "src": "/gallery/20260405_091805.webp",
     "thumbSrc": "/gallery/thumbs/20260405_091805.webp",
@@ -5740,7 +5718,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-515",
+    "id": "img-513",
     "filename": "20260406_160904.webp",
     "src": "/gallery/20260406_160904.webp",
     "thumbSrc": "/gallery/thumbs/20260406_160904.webp",
@@ -5751,7 +5729,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-516",
+    "id": "img-514",
     "filename": "20260406_161200.webp",
     "src": "/gallery/20260406_161200.webp",
     "thumbSrc": "/gallery/thumbs/20260406_161200.webp",
@@ -5762,7 +5740,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-517",
+    "id": "img-515",
     "filename": "20260406_163633.webp",
     "src": "/gallery/20260406_163633.webp",
     "thumbSrc": "/gallery/thumbs/20260406_163633.webp",
@@ -5773,7 +5751,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-518",
+    "id": "img-516",
     "filename": "20260506_195542.webp",
     "src": "/gallery/20260506_195542.webp",
     "thumbSrc": "/gallery/thumbs/20260506_195542.webp",
@@ -5784,7 +5762,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-519",
+    "id": "img-517",
     "filename": "20260506_200010.webp",
     "src": "/gallery/20260506_200010.webp",
     "thumbSrc": "/gallery/thumbs/20260506_200010.webp",
@@ -5795,7 +5773,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-520",
+    "id": "img-518",
     "filename": "20260922_182809.webp",
     "src": "/gallery/20260922_182809.webp",
     "thumbSrc": "/gallery/thumbs/20260922_182809.webp",
@@ -5806,7 +5784,7 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
     "category": "Schwibbögen & Fensterbilder"
   },
   {
-    "id": "img-521",
+    "id": "img-519",
     "filename": "20260924_181818.webp",
     "src": "/gallery/20260924_181818.webp",
     "thumbSrc": "/gallery/thumbs/20260924_181818.webp",

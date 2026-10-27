@@ -53,6 +53,203 @@ interface ProductData {
 }
 
 const PRODUCTS: Record<string, ProductData> = {
+  'schneeberg-555-jahre': {
+    id: 'schneeberg-555-jahre',
+    artNo: 'FFH-LB-555',
+    shortTitle: 'Jubiläumsbogen »555 Jahre Schneeberg«',
+    title: 'Exklusiver Jubiläums-Lichtbogen »555 Jahre Bergstadt Schneeberg«',
+    subtitle: 'Sonderedition zur 555-Jahrfeier (1471–2026) · Meisterhafte Handwerkskunst aus Schneeberg',
+    price: 99.0,
+    badge: 'Jubiläums-Edition',
+    images: [
+      {
+        src: '/products/schneeberg-555/schneeberg-555-1.jpg',
+        alt: 'Exklusiver Jubiläums-Lichtbogen 555 Jahre Bergstadt Schneeberg im atmosphärischen LED-Lichtglanz',
+        title: 'Atmosphärische Nachtansicht: Brillante Lichtbrechung im Acrylglas',
+      },
+      {
+        src: '/products/schneeberg-555/schneeberg-555-2.jpg',
+        alt: 'Frontalansicht des Schneeberg-Jubiläumsbogens auf der Werkbank',
+        title: 'Detailreiche Motive: St. Wolfgang, Stadtwappen, Förderturm & Rathaus',
+      },
+      {
+        src: '/products/schneeberg-555/schneeberg-555-3.jpg',
+        alt: 'Jubiläums-Lichtbogen mit Sockelgravur Anno 1471',
+        title: 'Massiver Eichensockel mit Gravur (55 × 4 × 4 cm)',
+      },
+      {
+        src: '/products/schneeberg-555/schneeberg-555-4.jpg',
+        alt: 'Werkstattaufnahme des Jubiläums-Lichtbogens mit Sockelgravur Glück auf',
+        title: 'Illuminierter Acrylglasbogen mit Eichensockel',
+      },
+      {
+        src: '/products/schneeberg-555/schneeberg-555-5.jpg',
+        alt: 'Nahaufnahme der Sockelgravur Glück auf seit 1471 in massivem Eichenholz',
+        title: 'Tiefgefräste Eichensockel-Gravur: Glück auf seit 1471',
+      },
+    ],
+    specs: [
+      { label: '55 × 4 × 4 cm', sub: 'Eiche massiv' },
+      { label: '12V LED-Betrieb', sub: 'Inkl. Netzteil' },
+      { label: '5 mm Acrylglas', sub: 'Präzisions-Lasergravur' },
+      { label: '1471–2026', sub: '555 Jahre Schneeberg' },
+    ],
+    bulletPoints: [
+      {
+        title: 'Jubiläumsedition 1471–2026',
+        text: 'Jubiläumsbogen zur 555-Jahrfeier der Bergstadt Schneeberg (1471–2026) mit St. Wolfgangskirche, Stadtwappen, Förderturm und Rathaus.',
+      },
+      {
+        title: 'Sockelmaß 55 × 4 × 4 cm',
+        text: 'Handgefertigter Sockel aus massivem Eichenholz mit warmer, langlebiger LED-Beleuchtung.',
+      },
+      {
+        title: '12V LED-Betrieb inkl. Netzteil',
+        text: 'Plug & Play: Inklusive passendem 12V Netzteil, sofort anschlussbereit.',
+      },
+      {
+        title: 'Bruchsicherer Spezialversand',
+        text: 'Stoßsicher im Spezialkarton verpackt mit versichertem DHL-Tracking.',
+      },
+    ],
+    introTitle: '555 Jahre Bergstadt Schneeberg: Ein leuchtendes Denkmal erzgebirgischer Geschichte',
+    introParagraphs: [
+      'Jubiläumsbogen zur 555-Jahrfeier der Bergstadt Schneeberg (1471–2026) mit St. Wolfgangskirche, Stadtwappen, Förderturm und Rathaus.',
+      'Mit dem großen Berggeschrey und den reichen Silberfunden im Jahre 1471 begann die faszinierende Geschichte unserer Bergstadt Schneeberg. Dieser exklusive Jubiläums-Lichtbogen verbindet bergmännische Tradition mit moderner LED-Lichtkunst: Auf 5 mm starkem, hochtransparentem Acrylglas erstrahlen die Wahrzeichen unserer Stadt in gestochen scharfer Brillanz über einem schweren Sockel aus massiver Eiche.',
+    ],
+    motifTitle: 'Die historischen Wahrzeichen Schneebergs vereint in einem Kunstwerk',
+    motifPoints: [
+      {
+        title: 'St. Wolfgangskirche & Rathaus',
+        text: 'Die markante spätgotische St. Wolfgangskirche und das historische Schneeberger Rathaus bilden das stolze architektonische Fundament des Bogenmotivs.',
+      },
+      {
+        title: 'Großes Stadtwappen & Schlägel und Eisen',
+        text: 'Das prachtvolle historische Schneeberger Wappen mit Schlägel und Eisen zeugt von der tiefen bergmännischen Verbundenheit unserer Region.',
+      },
+      {
+        title: 'Historischer Förderturm & 555 Jahre Schriftzug',
+        text: 'Der filigran gravierte Förderturm und der gotische Schriftzug erinnern an 555 Jahre stolze Bergbautradition von 1471 bis 2026.',
+      },
+    ],
+    qualityPoints: [
+      {
+        icon: Award,
+        title: 'Offizielle Jubiläums-Edition',
+        text: 'Gewidmet der 555-jährigen Geschichte der Bergstadt Schneeberg (1471–2026).',
+      },
+      {
+        icon: Tv,
+        title: 'Sockelmaß 55 × 4 × 4 cm (Eiche massiv)',
+        text: 'Massiver, handgearbeiteter Sockel aus heimischem Eichenholz mit warmer, stimmungsvoller LED-Beleuchtung.',
+      },
+      {
+        icon: Cpu,
+        title: '12V LED-Betrieb inkl. Netzteil',
+        text: 'Komplett anschlussfertig geliefert – einfach anstecken und die faszinierende Lichtbrechung genießen.',
+      },
+      {
+        icon: MapPin,
+        title: 'Gefertigt in Schneeberg',
+        text: 'Original erzgebirgische Handarbeit von Stephan Tautenhahn in Schneeberg OT Lindenau.',
+      },
+    ],
+    customTitle: 'Ihr persönliches Jubiläums-Unikat mit Sockelgravur',
+    customDescription:
+      'Geben Sie Ihrem Jubiläumsbogen eine ganz persönliche Note. Mit unserer Gravuroption auf dem massiven Eichensockel wird jedes Exemplar zu einem unverwechselbaren Sammlerstück:',
+    customFeatures: [
+      {
+        title: 'Individuelle Sockelgravur',
+        text: 'Bis zu 10 Zeichen nach Wunsch (z. B. „Glück auf“, Namen oder ein persönliches Jubiläumsjahr).',
+      },
+      {
+        title: 'Tiefenfräsung in Eichenholz',
+        text: 'Jede Gravur wird mit höchster Präzision dauerhaft in das massive Holz eingearbeitet.',
+      },
+      {
+        title: 'Sonderwünsche auf Anfrage',
+        text: 'Sondermaße oder Firmenpräsente realisieren wir gerne auf Anfrage für Sie.',
+      },
+    ],
+  },
+  'glueck-auf-panoramen': {
+    id: 'glueck-auf-panoramen',
+    artNo: 'FFH-SB-GAP',
+    shortTitle: 'Schwibbogen »Glück Auf – Panoramen«',
+    title: 'Traditioneller Erzgebirgs-Schwibbogen »Glück Auf – Panoramen« – Bergbau-Szenerie auf massivem Eichensockel',
+    subtitle: 'Handgefertigt von Stephan Tautenhahn in 08289 Schneeberg OT Lindenau',
+    price: 99.0, // 99,00 € zzgl. Versand (und optional +15,00 € Gravur)
+    badge: 'Eiche massiv & 3D-Licht',
+    images: [
+      {
+        src: '/products/glueck-auf-panoramen/bild-1.jpg',
+        alt: 'Schwibbogen Glück Auf Panoramen mit Förderturm und Grubenbahn beleuchtet',
+        title: 'Schwibbogen »Glück Auf – Panoramen« mit indirekter Beleuchtung',
+      },
+      {
+        src: '/products/glueck-auf-panoramen/bild-2.jpg',
+        alt: 'Detailaufnahme Schlägel und Eisen sowie Bergleute am Stollen',
+        title: 'Detailreiche Arbeit: Schlägel & Eisen, Fachwerk, Grubenbahn und Eichensockel',
+      },
+    ],
+    specs: [
+      { label: '55 × 4 × 4 cm', sub: 'Sockelmaß Eiche (Bogen ca. 59 × 38 cm)' },
+      { label: '12V LED-Betrieb', sub: 'Indirektes Licht mit 3D-Effekt' },
+      { label: 'Naturwerkstoff Holz', sub: 'Präzise verarbeitetes Unikat' },
+      { label: 'Wunschgravur', sub: 'Optional bis 10 Zeichen (+15 €)' },
+    ],
+    bulletPoints: [
+      {
+        title: 'Detailreiche Bergbau-Hommage',
+        text: 'Das Herzstück bildet »Schlägel und Eisen«, umrahmt von einem majestätischen Förderturm, traditionellen Fachwerkhäusern, einer Grubenbahn und Bergleuten am Stollen.',
+      },
+      {
+        title: 'Massiver Eichensockel (55 × 4 × 4 cm) & 3D-Licht',
+        text: 'Durch die verdeckte, indirekte 12V-Beleuchtung im Eichensockel wird das Motiv in ein warmes, gemütliches Licht getaucht.',
+      },
+      {
+        title: 'Persönliche Sockelgravur (+15,00 €)',
+        text: 'Veredeln Sie den Eichensockel optional mit Ihrer individuellen Wunschgravur (bis zu 10 Zeichen).',
+      },
+    ],
+    introTitle: 'Bringe ein Stück bergmännische Tradition in dein Zuhause! ⚒️✨',
+    introParagraphs: [
+      'Mit unserem liebevoll gefertigten Schwibbogen »Glück Auf – Panoramen« holst du dir nicht nur eine wunderschöne Lichtquelle, sondern auch ein echtes Stück Geschichte ins Fenster. Dieser detailreiche Lichterbogen ist eine Hommage an die Bergbautradition und fängt die Faszination der Zeche in stimmungsvollem Design ein.',
+      'Hinweis: Holz ist ein Naturprodukt. Leichte Abweichungen in der Maserung machen jedes Stück zu einem echten Unikat. Preis versteht sich zzgl. Versandkosten.',
+    ],
+    motifTitle: 'Das Motiv im Detail',
+    motifPoints: [
+      {
+        title: 'Schlägel und Eisen, Förderturm & Grubenbahn',
+        text: 'Zu entdecken gibt es einen majestätischen Förderturm, traditionelle Fachwerkhäuser, eine Grubenbahn sowie Bergleute, die in den Stollen einfahren – perfekt für die dunkle Jahreszeit.',
+      },
+    ],
+    qualityPoints: [
+      {
+        icon: Tv,
+        title: 'Ein Hingucker für jedes Fenster',
+        text: 'Mit dem massiven Eichensockel (55 × 4 × 4 cm) und dem großzügigen Bogenmaß (59 × 38 cm) ideal für Fensterbänke, Sideboards oder den Kamin.',
+      },
+      {
+        icon: Cpu,
+        title: 'Stimmungsvolle 12V-Beleuchtung',
+        text: 'Indirekt beleuchtet für einen plastischen 3D-Effekt – inklusive passendem 12V-Netzteil.',
+      },
+      {
+        icon: MapPin,
+        title: 'Mit Liebe zum Detail gefertigt',
+        text: 'Ein echter Blickfang aus unserer Werkstatt in Schneeberg, der die alte »Glück Auf«-Tradition leuchten lässt.',
+      },
+    ],
+    customTitle: 'Individuelle Sockelgravur (+15,00 €)',
+    customDescription: 'Verleihen Sie Ihrem Schwibbogen eine ganz persönliche Note mit einer Fräsung direkt im 55 × 4 × 4 cm Eichensockel.',
+    customFeatures: [
+      {
+        title: 'Bis zu 10 Zeichen frei wählbar',
+        text: 'Aktivieren Sie einfach oben beim Kauf die Gravur-Option und geben Sie Ihren Wunschtext ein.',
+      },
+    ],
+  },
   'erzgebirgs-lichtbogen': {
     id: 'erzgebirgs-lichtbogen',
     artNo: 'FFH-LB-01',
@@ -381,14 +578,21 @@ function OnlineShopContent() {
       ? 'schwibbogen-seiffener-kirche'
       : productParam && PRODUCTS[productParam]
       ? productParam
-      : 'erzgebirgs-lichtbogen';
+      : 'schneeberg-555-jahre';
 
   const [selectedProductId, setSelectedProductId] = useState<string>(normalizedInitial);
-  const activeProduct = PRODUCTS[selectedProductId] || PRODUCTS['erzgebirgs-lichtbogen'];
+  const activeProduct =
+    PRODUCTS[selectedProductId] ||
+    PRODUCTS['glueck-auf-panoramen'] ||
+    PRODUCTS['schneeberg-555-jahre'] ||
+    PRODUCTS['erzgebirgs-lichtbogen'];
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [shippingOption, setShippingOption] = useState<'standard' | 'pickup'>('standard');
+  const [engravingEnabled, setEngravingEnabled] = useState(false);
+  const [engravingText, setEngravingText] = useState('');
+  const [engravingError, setEngravingError] = useState<string | null>(null);
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
@@ -411,11 +615,20 @@ function OnlineShopContent() {
 
   const pricePerItem = activeProduct.price;
   const shippingCost = shippingOption === 'standard' ? 5.99 : 0.0;
+  const engravingCost = engravingEnabled ? 15.0 * quantity : 0.0;
   const subtotal = pricePerItem * quantity;
-  const totalPrice = subtotal + shippingCost;
+  const totalPrice = subtotal + shippingCost + engravingCost;
 
   // Stripe Checkout Handler
   const handleStripeCheckout = async () => {
+    // Client-side validation: If engraving is enabled, text is required
+    if (engravingEnabled && !engravingText.trim()) {
+      setEngravingError('Bitte geben Sie Ihren gewünschten Gravurtext ein (max. 10 Zeichen).');
+      const inputEl = document.getElementById('engraving-text-input');
+      if (inputEl) inputEl.focus();
+      return;
+    }
+
     setIsLoadingCheckout(true);
     setCheckoutError(null);
 
@@ -427,6 +640,8 @@ function OnlineShopContent() {
           productId: selectedProductId,
           quantity,
           shippingOption,
+          engravingEnabled,
+          engravingText: engravingText.trim(),
         }),
       });
 
@@ -453,6 +668,7 @@ function OnlineShopContent() {
     setActiveImageIndex(0);
     setQuantity(1);
     setCheckoutError(null);
+    setEngravingError(null);
   };
 
   return (
@@ -487,12 +703,12 @@ function OnlineShopContent() {
               </h2>
             </div>
             <span className="text-xs font-mono text-[#615e57]">
-              3 handgefertigte Unikate zur Auswahl · Sichere Direktzahlung mit Stripe
+              {Object.keys(PRODUCTS).length} handgefertigte Unikate zur Auswahl · Sichere Direktzahlung mit Stripe
             </span>
           </div>
 
-          {/* TAB CARDS FOR ALL 3 PRODUCTS */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* TAB CARDS FOR ALL PRODUCTS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3.5">
             {Object.values(PRODUCTS).map((prod) => {
               const isSelected = selectedProductId === prod.id;
               const prodThumb = prod.images[0].src;
@@ -709,6 +925,20 @@ function OnlineShopContent() {
                 </div>
               </div>
 
+              {/* Optional Gravur Breakdown if active */}
+              {engravingEnabled && (
+                <div className="pt-2 border-t border-[#e2ded5] flex items-center justify-between text-xs font-mono">
+                  <span className="text-[#a87948] flex items-center gap-1 font-semibold">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    Individuelle Sockelgravur:
+                  </span>
+                  <span className="font-bold text-[#a87948]">
+                    +{engravingCost.toFixed(2).replace('.', ',')} €
+                    {quantity > 1 ? ` (${quantity}× 15,00 €)` : ''}
+                  </span>
+                </div>
+              )}
+
               {/* Quantity Selector & Summary */}
               <div className="pt-2 flex items-center justify-between border-t border-[#e2ded5]">
                 <div className="flex items-center space-x-3">
@@ -737,7 +967,9 @@ function OnlineShopContent() {
                 </div>
 
                 <div className="text-right">
-                  <span className="text-[11px] font-mono text-[#8b877f] block">Gesamtbetrag:</span>
+                  <span className="text-[11px] font-mono text-[#8b877f] block">
+                    {engravingEnabled ? 'Gesamtbetrag (inkl. Gravur):' : 'Gesamtbetrag:'}
+                  </span>
                   <span className="text-xl font-mono font-bold text-[#a87948]">
                     {totalPrice.toFixed(2).replace('.', ',')} €
                   </span>
@@ -748,6 +980,94 @@ function OnlineShopContent() {
               <p className="text-[10px] text-[#8b877f] font-light leading-normal">
                 Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerstatus).
               </p>
+            </div>
+
+            {/* INTERAKTIVE SOCKEL-GRAVUR-OPTION FÜR ALLE ARTIKEL (+15,00 €) */}
+            <div className="p-4 sm:p-5 bg-white border border-[#d3cdbf] rounded-xs space-y-3.5 shadow-xs">
+              <label className="flex items-start space-x-3 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  id="engraving-toggle-checkbox"
+                  checked={engravingEnabled}
+                  onChange={(e) => {
+                    const checked = e.target.checked;
+                    setEngravingEnabled(checked);
+                    if (!checked) {
+                      setEngravingError(null);
+                    }
+                  }}
+                  className="mt-0.5 w-4 h-4 text-[#a87948] border-[#d3cdbf] rounded-xs focus:ring-[#a87948] accent-[#a87948] cursor-pointer"
+                />
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-1">
+                    <span className="text-xs sm:text-sm font-serif font-bold text-[#181715]">
+                      Individuelle Sockelgravur hinzufügen (+ 15,00 €)
+                    </span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider bg-[#a87948]/15 text-[#a87948] px-2 py-0.5 rounded-xs font-semibold">
+                      Personalisierung
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-[#615e57] font-mono mt-0.5">
+                    Ihr persönlicher Wunschtext präzise gefräst in den massiven Holzsockel
+                  </p>
+                </div>
+              </label>
+
+              {engravingEnabled && (
+                <div className="pt-3 border-t border-[#eae6de] space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <label
+                      htmlFor="engraving-text-input"
+                      className="text-xs font-mono uppercase tracking-wider text-[#181715] font-semibold"
+                    >
+                      Wunschtext auf Sockel <span className="text-red-600">*</span>
+                    </label>
+                    <span
+                      className={`text-xs font-mono font-semibold ${
+                        engravingText.length === 10
+                          ? 'text-[#a87948] font-bold'
+                          : engravingText.length > 0
+                          ? 'text-[#181715]'
+                          : 'text-[#8b877f]'
+                      }`}
+                    >
+                      {engravingText.length} / 10 Zeichen
+                    </span>
+                  </div>
+
+                  <input
+                    id="engraving-text-input"
+                    type="text"
+                    value={engravingText}
+                    onChange={(e) => {
+                      const val = e.target.value.slice(0, 10);
+                      setEngravingText(val);
+                      if (val.trim()) {
+                        setEngravingError(null);
+                      }
+                    }}
+                    maxLength={10}
+                    placeholder="z.B. Glück auf"
+                    className={`w-full px-3.5 py-2.5 bg-[#fcfbf9] border rounded-xs text-sm font-mono text-[#181715] placeholder:text-[#a8a39a] focus:outline-none focus:bg-white transition-all ${
+                      engravingError
+                        ? 'border-red-500 ring-1 ring-red-500'
+                        : 'border-[#d3cdbf] focus:border-[#a87948] focus:ring-1 focus:ring-[#a87948]'
+                    }`}
+                  />
+
+                  {engravingError && (
+                    <p className="text-xs text-red-600 font-mono flex items-center gap-1.5 pt-0.5">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      <span>{engravingError}</span>
+                    </p>
+                  )}
+
+                  {/* RECHTLICHER HINWEIS WIDERRUFSRECHT */}
+                  <p className="text-[10px] text-[#8b877f] font-mono leading-relaxed pt-1.5 border-t border-[#f0ede6]">
+                    Hinweis: Bei individueller Wunschgravur wird der Artikel speziell für Sie angefertigt (Ausschluss des Widerrufsrechts gemäß § 312g Abs. 2 Nr. 1 BGB).
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* STRIPE CHECKOUT CTA BUTTON */}

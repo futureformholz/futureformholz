@@ -33,6 +33,22 @@ export async function POST(req: Request) {
         priceId?: string;
       }
     > = {
+      'schneeberg-555-jahre': {
+        name: 'Exklusiver Jubiläums-Lichtbogen »555 Jahre Bergstadt Schneeberg«',
+        description:
+          'Jubiläumsbogen zur 555-Jahrfeier der Bergstadt Schneeberg (1471–2026) mit St. Wolfgangskirche, Stadtwappen, Förderturm und Rathaus. Sockelmaß: 55 × 4 × 4 cm, Eiche massiv, 12V LED-Betrieb inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/schneeberg-555/schneeberg-555-1.jpg',
+        priceId: process.env.STRIPE_PRICE_SCHNEEBERG_555,
+      },
+      'glueck-auf-panoramen': {
+        name: 'Traditioneller Erzgebirgs-Schwibbogen »Glück Auf – Panoramen«',
+        description:
+          'Traditioneller Erzgebirgs-Schwibbogen »Glück Auf – Panoramen« – Bergbau-Szenerie auf massivem Eichensockel (55 × 4 × 4 cm, Bogen ca. 59 × 38 cm), 12V LED-Betrieb inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/glueck-auf-panoramen/bild-1.jpg',
+        priceId: process.env.STRIPE_PRICE_GLUECK_AUF_PANORAMEN,
+      },
       'erzgebirgs-lichtbogen': {
         name: 'Exklusiver Erzgebirgs-Lichtbogen »Haamitland«',
         description:
@@ -58,6 +74,14 @@ export async function POST(req: Request) {
         priceId: process.env.STRIPE_PRICE_BERGMANNSTRADITION,
       },
       // Aliases
+      'schneeberg-555': {
+        name: 'Exklusiver Jubiläums-Lichtbogen »555 Jahre Bergstadt Schneeberg«',
+        description:
+          'Jubiläumsbogen zur 555-Jahrfeier der Bergstadt Schneeberg (1471–2026) mit St. Wolfgangskirche, Stadtwappen, Förderturm und Rathaus. Sockelmaß: 55 × 4 × 4 cm, Eiche massiv, 12V LED-Betrieb inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/schneeberg-555/schneeberg-555-1.jpg',
+        priceId: process.env.STRIPE_PRICE_SCHNEEBERG_555,
+      },
       'erzgebirgischer-led-schwibbogen': {
         name: 'LED-Holzschwibbogen »Seiffener Kirche«',
         description:
@@ -66,12 +90,37 @@ export async function POST(req: Request) {
         image: '/products/erzgebirgischer-led-schwibbogen/seiffener-kirche-1.jpg',
         priceId: process.env.STRIPE_PRICE_SEIFFENER_KIRCHE,
       },
+      'glueck-auf': {
+        name: 'Traditioneller Erzgebirgs-Schwibbogen »Glück Auf – Panoramen«',
+        description:
+          'Traditioneller Erzgebirgs-Schwibbogen »Glück Auf – Panoramen« – Bergbau-Szenerie auf massivem Eichensockel (55 × 4 × 4 cm, Bogen ca. 59 × 38 cm), 12V LED-Betrieb inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/glueck-auf-panoramen/bild-1.jpg',
+        priceId: process.env.STRIPE_PRICE_GLUECK_AUF_PANORAMEN,
+      },
     };
 
-    const selectedProduct = productCatalog[productId] || productCatalog['erzgebirgs-lichtbogen'];
+    const selectedProduct =
+      productCatalog[productId] ||
+      productCatalog['glueck-auf-panoramen'] ||
+      productCatalog['schneeberg-555-jahre'] ||
+      productCatalog['erzgebirgs-lichtbogen'];
 
-    // 1. Direct Stripe Payment Link (e.g. created in Stripe dashboard: https://buy.stripe.com/...)
-    if (directPaymentLink) {
+    // Validate engraving option
+    const engravingEnabled = Boolean(body.engravingEnabled);
+    const rawEngravingText = typeof body.engravingText === 'string' ? body.engravingText.trim() : '';
+    const engravingText = rawEngravingText.slice(0, 10);
+    const hasEngraving = engravingEnabled && engravingText.length > 0;
+
+    if (engravingEnabled && !rawEngravingText) {
+      return NextResponse.json(
+        { error: 'Bitte geben Sie einen Gravurtext für die Sockelgravur ein (max. 10 Zeichen).' },
+        { status: 400 }
+      );
+    }
+
+    // 1. Direct Stripe Payment Link (only when no custom engraving is requested and link is set)
+    if (directPaymentLink && !hasEngraving && !stripeSecretKey) {
       return NextResponse.json({ url: directPaymentLink });
     }
 
@@ -87,9 +136,13 @@ export async function POST(req: Request) {
       }
       const productImages = imageUrl.startsWith('https://') ? [imageUrl] : [];
 
+      const mainProductDescription = hasEngraving
+        ? `${selectedProduct.description} · Inkl. Sockelgravur: »${engravingText}«`
+        : selectedProduct.description;
+
       // Determine line item: Use pre-configured Stripe Price ID if available, otherwise dynamic price_data
-      const lineItem: any =
-        selectedProduct.priceId && selectedProduct.priceId.startsWith('price_')
+      const mainLineItem: any =
+        !hasEngraving && selectedProduct.priceId && selectedProduct.priceId.startsWith('price_')
           ? {
               price: selectedProduct.priceId,
               quantity,
@@ -99,13 +152,30 @@ export async function POST(req: Request) {
                 currency: 'eur',
                 product_data: {
                   name: selectedProduct.name,
-                  description: selectedProduct.description,
+                  description: mainProductDescription,
                   ...(productImages.length > 0 ? { images: productImages } : {}),
                 },
                 unit_amount: selectedProduct.price, // 99.00 EUR
               },
               quantity,
             };
+
+      const lineItems: any[] = [mainLineItem];
+
+      // Add engraving line item (+ 15,00 EUR) if requested
+      if (hasEngraving) {
+        lineItems.push({
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: `Individuelle Sockelgravur (bis 10 Zeichen): »${engravingText}«`,
+              description: `Individuelle Wunschgravur auf massivem Eichenholz: "${engravingText}" (Sonderanfertigung gem. § 312g Abs. 2 Nr. 1 BGB)`,
+            },
+            unit_amount: 1500, // 15.00 EUR
+          },
+          quantity,
+        });
+      }
 
       const sessionParams: any = {
         mode: 'payment',
@@ -123,8 +193,10 @@ export async function POST(req: Request) {
           quantity: String(quantity),
           shipping_mode: isPickup ? 'Selbstabholung' : 'DHL Versand',
           delivery_time: 'ca. 14 Tage',
+          engraving_enabled: hasEngraving ? 'true' : 'false',
+          engraving_text: hasEngraving ? engravingText : '',
         },
-        line_items: [lineItem],
+        line_items: lineItems,
         shipping_options: [
           {
             shipping_rate_data: {
