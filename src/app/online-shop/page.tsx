@@ -23,6 +23,9 @@ import {
   AlertCircle,
   Award,
   Zap,
+  ArrowLeft,
+  Eye,
+  ShoppingBag,
 } from 'lucide-react';
 
 interface ProductImage {
@@ -247,6 +250,99 @@ const PRODUCTS: Record<string, ProductData> = {
       {
         title: 'Bis zu 10 Zeichen frei wählbar',
         text: 'Aktivieren Sie einfach oben beim Kauf die Gravur-Option und geben Sie Ihren Wunschtext ein.',
+      },
+    ],
+  },
+  'neustaedtel': {
+    id: 'neustaedtel',
+    artNo: 'FFH-LB-NEU',
+    shortTitle: 'Erzgebirgs-Lichtbogen »Neustädtel«',
+    title: 'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Handgravierte Acrylglaskunst auf massivem Eichensockel',
+    subtitle: 'Handgefertigt von Stephan Tautenhahn in 08289 Schneeberg OT Lindenau',
+    price: 99.0, // 99,00 € zzgl. Versand
+    badge: 'Ortsteil-Edition · Eiche massiv',
+    images: [
+      {
+        src: '/products/neustaedtel/bild-1.jpg',
+        alt: 'Erzgebirgs-Lichtbogen Neustädtel beleuchtet auf Eichensockel',
+        title: 'Lichtbogen »Neustädtel« mit warmweißer 12V-LED-Beleuchtung',
+      },
+      {
+        src: '/products/neustaedtel/bild-2.jpg',
+        alt: 'Detailaufnahme Neustädtel Gravur und Eichensockel 55x4x4 cm',
+        title: 'Massiver Eichensockel (55 × 4 × 4 cm) mit präziser Holzarbeit',
+      },
+      {
+        src: '/products/neustaedtel/bild-3.jpg',
+        alt: 'Lichtbogen Neustädtel in der Werkstatt mit stimmungsvoller Lichtreflexion',
+        title: 'Illuminierter Acrylglasbogen mit Eichensockel',
+      },
+      {
+        src: '/products/neustaedtel/bild-4.jpg',
+        alt: 'Frontalaufnahme des Neustädtler Lichtbogens',
+        title: 'Präzise Konturgravur: Kirche, Bergamt & Ortsansicht',
+      },
+      {
+        src: '/products/neustaedtel/bild-5.jpg',
+        alt: 'Zwei handgefertigte Neustädtel-Lichtbögen auf der Werkbank',
+        title: 'Meisterhafte Handarbeit aus Schneeberg OT Lindenau',
+      },
+    ],
+    specs: [
+      { label: '55 × 4 × 4 cm', sub: 'Massiver Sockel aus Eiche' },
+      { label: 'Neustädtler Motiv', sub: 'Kirche, Wappen & Ortsansicht' },
+      { label: '12V Plug & Play', sub: 'Warmweiße LED inkl. Netzteil' },
+      { label: 'Wunschgravur', sub: 'Optional bis 10 Zeichen (+15 €)' },
+    ],
+    bulletPoints: [
+      {
+        title: 'Heimatverbundenes Design',
+        text: 'Brillante Konturgravur der Neustädtler Wahrzeichen mit Kirche, Ortswappen und bergmännischen Details.',
+      },
+      {
+        title: 'Massiver Eichensockel (55 × 4 × 4 cm)',
+        text: 'Gefertigt aus heimischer Eiche, fein geschliffen und geölt – mit verdeckter 12V-LED-Lichtleiste.',
+      },
+      {
+        title: 'Persönliche Sockelgravur (+15,00 €)',
+        text: 'Optional mit Ihrem individuellen Wunschtext (bis zu 10 Zeichen) direkt in die Sockelfront gefräst.',
+      },
+    ],
+    introTitle: 'Heimatliebe im warmen Licht: Der Neustädtler Lichterbogen',
+    introParagraphs: [
+      'Hol dir ein Stück erzgebirgische Geschichte und echtes Handwerk ins Fenster! Unser Lichtbogen »Neustädtel« zeigt die markanten Wahrzeichen des geschichtsträchtigen Ortsteils in brillanter Acryl-Konturgravur.',
+      'Hinweis: Holz ist ein Naturprodukt. Leichte Abweichungen in der Maserung machen jedes Stück zu einem Unikat. Preis zzgl. Versandkosten.',
+    ],
+    motifTitle: 'Das Motiv im Detail',
+    motifPoints: [
+      {
+        title: 'Ortsansicht Neustädtel',
+        text: 'Detailreich gravierte Gebäude, Kirchturm und das traditionelle Wappen auf hochwertigem Acrylglas.',
+      },
+    ],
+    qualityPoints: [
+      {
+        icon: Tv,
+        title: 'Perfektes Sockelmaß (55 cm)',
+        text: 'Harmonisierte Maße von 55 × 4 × 4 cm für einen stabilen und edlen Stand auf jeder Fensterbank.',
+      },
+      {
+        icon: Cpu,
+        title: 'Sicherer 12V-Betrieb',
+        text: 'Inklusive energiesparender, warmweißer LEDs und passendem Netzteil für den sofortigen Start.',
+      },
+      {
+        icon: MapPin,
+        title: 'Echte Handarbeit aus Sachsen',
+        text: 'Entworfen und gefertigt in unserer Werkstatt in Schneeberg OT Lindenau.',
+      },
+    ],
+    customTitle: 'Individuelle Sockelgravur (+15,00 €)',
+    customDescription: 'Verleihen Sie Ihrem Neustädtler Bogen eine persönliche Note mit einer Gravur direkt im Eichensockel.',
+    customFeatures: [
+      {
+        title: 'Bis zu 10 Zeichen wählbar',
+        text: 'Geben Sie Ihren Wunschtext direkt vor der Bestellung im Shop ein.',
       },
     ],
   },
@@ -578,14 +674,10 @@ function OnlineShopContent() {
       ? 'schwibbogen-seiffener-kirche'
       : productParam && PRODUCTS[productParam]
       ? productParam
-      : 'schneeberg-555-jahre';
+      : null;
 
-  const [selectedProductId, setSelectedProductId] = useState<string>(normalizedInitial);
-  const activeProduct =
-    PRODUCTS[selectedProductId] ||
-    PRODUCTS['glueck-auf-panoramen'] ||
-    PRODUCTS['schneeberg-555-jahre'] ||
-    PRODUCTS['erzgebirgs-lichtbogen'];
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(normalizedInitial);
+  const activeProduct = selectedProductId ? PRODUCTS[selectedProductId] || null : null;
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -608,19 +700,55 @@ function OnlineShopContent() {
         setSelectedProductId(mapped);
         setActiveImageIndex(0);
       }
+    } else {
+      setSelectedProductId(null);
     }
   }, [productParam]);
 
-  const currentImages = activeProduct.images;
+  // Handle browser Back / Forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const p = params.get('product') || params.get('p');
+      if (p && PRODUCTS[p]) {
+        setSelectedProductId(p);
+      } else {
+        setSelectedProductId(null);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
-  const pricePerItem = activeProduct.price;
+  const currentImages = activeProduct ? activeProduct.images : [];
+  const pricePerItem = activeProduct ? activeProduct.price : 99.0;
   const shippingCost = shippingOption === 'standard' ? 5.99 : 0.0;
   const engravingCost = engravingEnabled ? 15.0 * quantity : 0.0;
   const subtotal = pricePerItem * quantity;
   const totalPrice = subtotal + shippingCost + engravingCost;
 
+  const handleSelectProduct = (id: string) => {
+    setSelectedProductId(id);
+    setActiveImageIndex(0);
+    setQuantity(1);
+    setCheckoutError(null);
+    setEngravingError(null);
+    window.history.pushState(null, '', `/online-shop?product=${id}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToOverview = () => {
+    setSelectedProductId(null);
+    setCheckoutError(null);
+    setEngravingError(null);
+    window.history.pushState(null, '', '/online-shop');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // Stripe Checkout Handler
   const handleStripeCheckout = async () => {
+    if (!activeProduct || !selectedProductId) return;
+
     // Client-side validation: If engraving is enabled, text is required
     if (engravingEnabled && !engravingText.trim()) {
       setEngravingError('Bitte geben Sie Ihren gewünschten Gravurtext ein (max. 10 Zeichen).');
@@ -663,14 +791,6 @@ function OnlineShopContent() {
     }
   };
 
-  const handleSelectProduct = (id: string) => {
-    setSelectedProductId(id);
-    setActiveImageIndex(0);
-    setQuantity(1);
-    setCheckoutError(null);
-    setEngravingError(null);
-  };
-
   return (
     <div className="bg-[#fcfbf9] text-[#181715] min-h-screen">
       {/* BREADCRUMB HEADER */}
@@ -680,99 +800,218 @@ function OnlineShopContent() {
             Startseite
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <Link href="/online-shop" className="text-[#181715] font-semibold">
-            Online-Shop
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="truncate max-w-xs sm:max-w-md text-[#a87948]">
-            {activeProduct.shortTitle}
-          </span>
-        </div>
-      </div>
-
-      {/* PRODUCT CATALOG SELECTOR BANNER */}
-      <div className="border-b border-[#eae6de] bg-[#fdfcfb] py-6 px-6 sm:px-8">
-        <div className="max-w-7xl mx-auto space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#a87948] block">
-                Exklusive Werkstatt-Kollektion
+          {activeProduct ? (
+            <>
+              <button
+                type="button"
+                onClick={handleBackToOverview}
+                className="hover:text-[#a87948] transition-colors cursor-pointer"
+              >
+                Online-Shop
+              </button>
+              <ChevronRight className="w-3.5 h-3.5" />
+              <span className="truncate max-w-xs sm:max-w-md text-[#a87948] font-semibold">
+                {activeProduct.shortTitle}
               </span>
-              <h2 className="text-lg sm:text-xl font-serif text-[#181715]">
-                Wählen Sie Ihr gewünschtes Handwerks-Unikat:
-              </h2>
-            </div>
-            <span className="text-xs font-mono text-[#615e57]">
-              {Object.keys(PRODUCTS).length} handgefertigte Unikate zur Auswahl · Sichere Direktzahlung mit Stripe
+            </>
+          ) : (
+            <span className="text-[#181715] font-semibold">
+              Online-Shop
             </span>
-          </div>
-
-          {/* TAB CARDS FOR ALL PRODUCTS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3.5">
-            {Object.values(PRODUCTS).map((prod) => {
-              const isSelected = selectedProductId === prod.id;
-              const prodThumb = prod.images[0].src;
-
-              return (
-                <button
-                  key={prod.id}
-                  onClick={() => handleSelectProduct(prod.id)}
-                  className={`p-4 text-left border rounded-xs transition-all flex items-center space-x-3.5 cursor-pointer ${
-                    isSelected
-                      ? 'border-[#a87948] bg-white shadow-md ring-2 ring-[#a87948]/25'
-                      : 'border-[#eae6de] bg-[#f7f5f0] hover:bg-white hover:border-[#d3cdbf]'
-                  }`}
-                >
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-[#181715] rounded-xs overflow-hidden shrink-0 border border-[#eae6de]">
-                    <Image
-                      src={prodThumb}
-                      alt={prod.shortTitle}
-                      fill
-                      sizes="80px"
-                      className="object-cover"
-                    />
-                    <div className="absolute top-1 left-1">
-                      <span className="text-[8px] font-mono uppercase tracking-wider bg-black/80 text-white px-1.5 py-0.5">
-                        {prod.badge}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 min-w-0 space-y-1">
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="text-[9px] font-mono uppercase tracking-widest text-[#a87948] font-bold">
-                        {prod.artNo}
-                      </span>
-                      {isSelected && (
-                        <span className="text-[9px] font-mono uppercase tracking-wider bg-[#a87948] text-white px-1.5 py-0.5 rounded-xs font-semibold">
-                          Aktiv
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="font-serif text-xs sm:text-sm text-[#181715] font-semibold truncate leading-tight">
-                      {prod.shortTitle}
-                    </h3>
-
-                    <div className="pt-0.5 flex items-baseline justify-between">
-                      <span className="text-sm font-serif font-bold text-[#181715]">
-                        {prod.price.toFixed(2).replace('.', ',')} €
-                      </span>
-                      <span className="text-[10px] font-mono text-[#a87948]">
-                        Details ansehen →
-                      </span>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+          )}
         </div>
       </div>
 
-      {/* MAIN ACTIVE PRODUCT SECTION */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      {/* 1. PRODUKT-GRID (ÜBERSICHT) */}
+      {!activeProduct ? (
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 py-10 sm:py-16 space-y-12">
+          {/* Header Banner */}
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-[#a87948] font-semibold block">
+              Erzgebirgische Meisterwerkstatt · Stephan Tautenhahn
+            </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#181715] font-normal leading-tight">
+              Exklusive Lichtbögen & Schwibbögen
+            </h1>
+            <p className="text-sm sm:text-base text-[#615e57] font-light leading-relaxed">
+              Traditionelle Handwerkskunst neu interpretiert. Handgefertigt in Schneeberg OT Lindenau – aus massivem heimischem Eichenholz, hochpräzisen Konturgravuren und stimmungsvoller 12V-LED-Lichttechnik mit optionaler Sockel-Wunschgravur.
+            </p>
+          </div>
+
+          {/* Trust Highlights */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto">
+            <div className="p-4 bg-white border border-[#eae6de] rounded-xs text-center space-y-1 shadow-xs">
+              <span className="text-xs font-mono font-bold text-[#a87948] block">100% Erzgebirge</span>
+              <span className="text-[11px] font-mono text-[#615e57] block">Handarbeit aus Schneeberg</span>
+            </div>
+            <div className="p-4 bg-white border border-[#eae6de] rounded-xs text-center space-y-1 shadow-xs">
+              <span className="text-xs font-mono font-bold text-[#a87948] block">Eiche massiv</span>
+              <span className="text-[11px] font-mono text-[#615e57] block">Sockelmaß 55 × 4 × 4 cm</span>
+            </div>
+            <div className="p-4 bg-white border border-[#eae6de] rounded-xs text-center space-y-1 shadow-xs">
+              <span className="text-xs font-mono font-bold text-[#a87948] block">12V Plug & Play</span>
+              <span className="text-[11px] font-mono text-[#615e57] block">Inkl. 12V-Netzteil</span>
+            </div>
+            <div className="p-4 bg-white border border-[#eae6de] rounded-xs text-center space-y-1 shadow-xs">
+              <span className="text-xs font-mono font-bold text-[#a87948] block">Wunschgravur (+15 €)</span>
+              <span className="text-[11px] font-mono text-[#615e57] block">Individuell in Eiche gefräst</span>
+            </div>
+          </div>
+
+          {/* Section Subheader */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#eae6de] pb-3 text-xs font-mono text-[#615e57]">
+            <span className="font-semibold text-[#181715] text-sm">
+              Alle Modelle ({Object.keys(PRODUCTS).length} Handwerks-Unikate)
+            </span>
+            <span>Klicken Sie auf ein Modell, um alle Bilder & Gravur-Optionen zu sehen</span>
+          </div>
+
+          {/* THE PRODUCT GRID */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+            {Object.values(PRODUCTS).map((prod) => (
+              <div
+                key={prod.id}
+                onClick={() => handleSelectProduct(prod.id)}
+                className="bg-white border border-[#eae6de] hover:border-[#a87948] rounded-xs overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer group"
+              >
+                {/* Image Viewport */}
+                <div className="relative aspect-[16/10] bg-[#181715] overflow-hidden">
+                  <Image
+                    src={prod.images[0].src}
+                    alt={prod.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  {/* Badges */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="text-[9px] font-mono uppercase tracking-wider bg-black/85 text-white px-2.5 py-1 backdrop-blur-xs border border-white/10 rounded-xs shadow">
+                      {prod.badge}
+                    </span>
+                  </div>
+                  <div className="absolute top-3 right-3 z-10">
+                    <span className="text-[9px] font-mono uppercase tracking-wider bg-[#a87948] text-white px-2 py-0.5 rounded-xs font-bold shadow">
+                      {prod.artNo}
+                    </span>
+                  </div>
+                  {/* Hover Hint */}
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <span className="bg-white/95 text-[#181715] px-4 py-2 rounded-xs text-xs font-mono font-semibold shadow-lg backdrop-blur-xs flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                      <Eye className="w-3.5 h-3.5 text-[#a87948]" />
+                      Details ansehen
+                    </span>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2.5">
+                    <h2 className="font-serif text-lg font-bold text-[#181715] group-hover:text-[#a87948] transition-colors leading-snug line-clamp-2">
+                      {prod.shortTitle}
+                    </h2>
+                    <p className="text-xs text-[#615e57] line-clamp-2 leading-relaxed">
+                      {prod.bulletPoints[0]?.text || prod.subtitle}
+                    </p>
+
+                    {/* Quick Specs Chips */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      <span className="text-[10px] font-mono bg-[#f4f1ea] text-[#615e57] px-2 py-0.5 rounded-xs">
+                        {prod.specs[0]?.label}
+                      </span>
+                      <span className="text-[10px] font-mono bg-[#f4f1ea] text-[#615e57] px-2 py-0.5 rounded-xs">
+                        {prod.specs[1]?.label}
+                      </span>
+                      <span className="text-[10px] font-mono bg-[#a87948]/15 text-[#a87948] px-2 py-0.5 rounded-xs font-semibold">
+                        +15 € Wunschgravur
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Footer: Price & CTA */}
+                  <div className="pt-4 border-t border-[#eae6de] space-y-3">
+                    <div className="flex items-baseline justify-between">
+                      <div>
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#8b877f] block">
+                          Handarbeitspreis:
+                        </span>
+                        <span className="text-2xl font-serif font-bold text-[#181715]">
+                          {prod.price.toFixed(2).replace('.', ',')} €
+                        </span>
+                      </div>
+                      <span className="text-[11px] font-mono text-[#8b877f]">
+                        zzgl. Versand
+                      </span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelectProduct(prod.id);
+                      }}
+                      className="w-full py-3 px-4 bg-[#86b817] group-hover:bg-[#749f13] text-[#121b06] text-xs uppercase tracking-widest font-bold transition-all rounded-xs flex items-center justify-center space-x-2 shadow-xs hover:shadow-md cursor-pointer"
+                    >
+                      <span>Details ansehen & kaufen</span>
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Custom Inquiry Teaser */}
+          <div className="bg-[#181715] text-[#eae6de] p-8 sm:p-10 rounded-xs border border-[#2e2c28] flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl text-center md:text-left">
+              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#a87948] font-bold">
+                Individuelle Sonderanfertigung
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif text-white">
+                Sie suchen ein ganz persönliches Motiv oder ein Firmenpräsent?
+              </h3>
+              <p className="text-xs text-[#a39e94] leading-relaxed">
+                Wir fertigen Schwibbögen und Lichtkunst mit Ihrem Wunschmotiv, Familienwappen oder Firmenlogo – passgenau in unserer Schneeberger Werkstatt.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <Link
+                href="/#kontakt"
+                className="px-6 py-3 bg-[#a87948] hover:bg-[#906233] text-white text-xs uppercase tracking-widest font-bold transition-colors text-center rounded-xs"
+              >
+                Sonderanfertigung anfragen
+              </Link>
+              <a
+                href="tel:+491749233526"
+                className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest font-mono transition-colors text-center border border-white/20 rounded-xs flex items-center justify-center gap-2"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span>0174 9233 526</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* 2. DETAILSEITE BEI KLICK */
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 py-8 sm:py-12 space-y-10">
+          {/* Back Button Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#eae6de]">
+            <button
+              type="button"
+              onClick={handleBackToOverview}
+              className="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-[#181715] hover:text-[#a87948] transition-colors py-2.5 px-4 bg-white border border-[#d3cdbf] hover:border-[#a87948] rounded-xs shadow-xs cursor-pointer group"
+            >
+              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              <span>← Zurück zur Übersicht</span>
+            </button>
+
+            <div className="flex items-center space-x-2 text-xs font-mono text-[#8b877f]">
+              <span className="font-semibold text-[#a87948]">{activeProduct.artNo}</span>
+              <span>·</span>
+              <span>{activeProduct.badge}</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* LEFT: GALLERY (7 cols) */}
           <div className="lg:col-span-7 space-y-5">
             {/* Main Active Image Viewport */}
@@ -1234,10 +1473,26 @@ function OnlineShopContent() {
             </div>
           </div>
         </div>
+
+        {/* Bottom Back Button */}
+        <div className="pt-8 border-t border-[#eae6de] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <button
+            type="button"
+            onClick={handleBackToOverview}
+            className="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-[#181715] hover:text-[#a87948] transition-colors py-3 px-5 bg-white border border-[#d3cdbf] hover:border-[#a87948] rounded-xs shadow-xs cursor-pointer group"
+          >
+            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+            <span>← Zurück zur Produkt-Übersicht</span>
+          </button>
+          <span className="text-xs font-mono text-[#8b877f]">
+            Handgefertigte erzgebirgische Holzkunst von Stephan Tautenhahn
+          </span>
+        </div>
       </div>
+    )}
 
       {/* FULLSCREEN PHOTO ZOOM MODAL */}
-      {isZoomOpen && (
+      {isZoomOpen && activeProduct && (
         <div
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-10 cursor-pointer"
           onClick={() => setIsZoomOpen(false)}

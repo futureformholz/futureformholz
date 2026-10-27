@@ -49,6 +49,14 @@ export async function POST(req: Request) {
         image: '/products/glueck-auf-panoramen/bild-1.jpg',
         priceId: process.env.STRIPE_PRICE_GLUECK_AUF_PANORAMEN,
       },
+      'neustaedtel': {
+        name: 'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel«',
+        description:
+          'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Handgravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm), 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/neustaedtel/bild-1.jpg',
+        priceId: process.env.STRIPE_PRICE_NEUSTAEDTEL,
+      },
       'erzgebirgs-lichtbogen': {
         name: 'Exklusiver Erzgebirgs-Lichtbogen »Haamitland«',
         description:
@@ -98,10 +106,19 @@ export async function POST(req: Request) {
         image: '/products/glueck-auf-panoramen/bild-1.jpg',
         priceId: process.env.STRIPE_PRICE_GLUECK_AUF_PANORAMEN,
       },
+      'neustaedtel-lichtbogen': {
+        name: 'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel«',
+        description:
+          'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Handgravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm), 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+        price: 9900,
+        image: '/products/neustaedtel/bild-1.jpg',
+        priceId: process.env.STRIPE_PRICE_NEUSTAEDTEL,
+      },
     };
 
     const selectedProduct =
       productCatalog[productId] ||
+      productCatalog['neustaedtel'] ||
       productCatalog['glueck-auf-panoramen'] ||
       productCatalog['schneeberg-555-jahre'] ||
       productCatalog['erzgebirgs-lichtbogen'];
