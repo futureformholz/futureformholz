@@ -1,5 +1,5 @@
 // Automatisch generiert aus C:\Users\steph\Pictures\Website
-// Stand: 2026-10-27T19:33:08.223Z
+// Stand: 2026-10-30T15:32:05.473Z
 
 export interface WebsiteImage {
   id: string;
@@ -1812,8 +1812,8 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
   {
     "id": "img-162",
     "filename": "20251230_171039 - Kopie.webp",
-    "src": "/gallery/20251230_171039%20-%20Kopie.webp",
-    "thumbSrc": "/gallery/thumbs/20251230_171039%20-%20Kopie.webp",
+    "src": "/gallery/20251230_171039 - Kopie.webp",
+    "thumbSrc": "/gallery/thumbs/20251230_171039 - Kopie.webp",
     "width": 1140,
     "height": 1920,
     "ratio": 0.59,
@@ -1823,8 +1823,8 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
   {
     "id": "img-163",
     "filename": "20251230_171045 - Kopie.webp",
-    "src": "/gallery/20251230_171045%20-%20Kopie.webp",
-    "thumbSrc": "/gallery/thumbs/20251230_171045%20-%20Kopie.webp",
+    "src": "/gallery/20251230_171045 - Kopie.webp",
+    "thumbSrc": "/gallery/thumbs/20251230_171045 - Kopie.webp",
     "width": 1206,
     "height": 1920,
     "ratio": 0.63,
@@ -1834,8 +1834,8 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
   {
     "id": "img-164",
     "filename": "20251230_171106 - Kopie.webp",
-    "src": "/gallery/20251230_171106%20-%20Kopie.webp",
-    "thumbSrc": "/gallery/thumbs/20251230_171106%20-%20Kopie.webp",
+    "src": "/gallery/20251230_171106 - Kopie.webp",
+    "thumbSrc": "/gallery/thumbs/20251230_171106 - Kopie.webp",
     "width": 1220,
     "height": 1920,
     "ratio": 0.64,
@@ -1845,8 +1845,8 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
   {
     "id": "img-165",
     "filename": "20251230_171109 - Kopie.webp",
-    "src": "/gallery/20251230_171109%20-%20Kopie.webp",
-    "thumbSrc": "/gallery/thumbs/20251230_171109%20-%20Kopie.webp",
+    "src": "/gallery/20251230_171109 - Kopie.webp",
+    "thumbSrc": "/gallery/thumbs/20251230_171109 - Kopie.webp",
     "width": 897,
     "height": 1920,
     "ratio": 0.47,
@@ -1856,8 +1856,8 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
   {
     "id": "img-166",
     "filename": "20251230_171341 - Kopie.webp",
-    "src": "/gallery/20251230_171341%20-%20Kopie.webp",
-    "thumbSrc": "/gallery/thumbs/20251230_171341%20-%20Kopie.webp",
+    "src": "/gallery/20251230_171341 - Kopie.webp",
+    "thumbSrc": "/gallery/thumbs/20251230_171341 - Kopie.webp",
     "width": 1488,
     "height": 1920,
     "ratio": 0.78,
@@ -1889,8 +1889,8 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
   {
     "id": "img-169",
     "filename": "20251230_171415 - Kopie.webp",
-    "src": "/gallery/20251230_171415%20-%20Kopie.webp",
-    "thumbSrc": "/gallery/thumbs/20251230_171415%20-%20Kopie.webp",
+    "src": "/gallery/20251230_171415 - Kopie.webp",
+    "thumbSrc": "/gallery/thumbs/20251230_171415 - Kopie.webp",
     "width": 1092,
     "height": 1920,
     "ratio": 0.57,
@@ -1900,8 +1900,8 @@ export const WEBSITE_GALLERY: WebsiteImage[] = [
   {
     "id": "img-170",
     "filename": "20251230_171444 - Kopie.webp",
-    "src": "/gallery/20251230_171444%20-%20Kopie.webp",
-    "thumbSrc": "/gallery/thumbs/20251230_171444%20-%20Kopie.webp",
+    "src": "/gallery/20251230_171444 - Kopie.webp",
+    "thumbSrc": "/gallery/thumbs/20251230_171444 - Kopie.webp",
     "width": 1266,
     "height": 1920,
     "ratio": 0.66,

@@ -33,9 +33,21 @@ const CATEGORY_ORDER = [
 // Files referenced in static page layouts (e.g. team portraits, hero image)
 const PRESERVED_STATIC_FILES = new Set([
   '20260405_091706.jpg', // team member
+  '20260405_091706.webp',
   '20260525_160853.jpg', // team member
+  '20260525_160853.webp',
   '20260406_160904.jpg', // team member
+  '20260406_160904.webp',
   '20260406_163633.jpg', // hero background
+  '20260406_163633.webp',
+  '20260525_115302.jpg', // showcase: Großformatige Licht-Monumente
+  '20260525_115302.webp',
+  '20251122_135500.jpg', // showcase: Smarte LED-Steuerung
+  '20251122_135500.webp',
+  'Designer.png',        // showcase: Werbetafeln & Epoxidharz
+  'Designer.webp',
+  '1790141401993.png',   // showcase: Vom Entwurf bis zur Schraube
+  '1790141401993.webp',
 ]);
 
 // Parallel worker queue
@@ -214,15 +226,13 @@ export async function scanAndSyncGallery() {
       category: img.category,
       subcategory: img.subcategory,
     };
-
-    const encodedWebp = encodeURIComponent(img.webpName);
     const friendlyTitle = img.baseName.replace(/[-_]/g, ' ').trim();
 
     return {
       id: `img-${idx + 1}`,
       filename: img.webpName,
-      src: `/gallery/${encodedWebp}`,
-      thumbSrc: `/gallery/thumbs/${encodedWebp}`,
+      src: `/gallery/${img.webpName}`,
+      thumbSrc: `/gallery/thumbs/${img.webpName}`,
       width,
       height,
       ratio,
@@ -296,7 +306,7 @@ export async function scanAndSyncGallery() {
       }
 
       // If it's a webp that is no longer in currentWebpNames
-      if (f.endsWith('.webp') && !currentWebpNames.has(f)) {
+      if (f.endsWith('.webp') && !currentWebpNames.has(f) && !PRESERVED_STATIC_FILES.has(f)) {
         try {
           fs.unlinkSync(full);
           const thumb = path.join(PUBLIC_THUMBS_DIR, f);

@@ -127,7 +127,7 @@ export default function UeberUnsPage() {
           <div className="lg:col-span-5">
             <div className="relative h-[480px] sm:h-[560px] w-full border border-[#eae6de] overflow-hidden shadow-xl group bg-[#24221e]">
               <Image
-                src="/gallery/20260406_160904.jpg"
+                src="/gallery/20260406_160904.webp"
                 alt="Acrylglas-Schwibbogen Haamitland Arzgebirg mit Bergparade auf der Werkbank"
                 fill
                 sizes="(max-width: 1024px) 100vw, 42vw"
@@ -155,7 +155,7 @@ export default function UeberUnsPage() {
             <div className="lg:col-span-5 order-2 lg:order-1">
               <div className="relative h-[440px] sm:h-[500px] w-full border border-[#3d3a33] overflow-hidden shadow-2xl group">
                 <Image
-                  src="/gallery/20260406_163633.jpg"
+                  src="/gallery/20260406_163633.webp"
                   alt="Großformat-Lichtwerkzeuge auf der Werkbank von Future Form Holz"
                   fill
                   sizes="(max-width: 1024px) 100vw, 42vw"
@@ -254,7 +254,7 @@ export default function UeberUnsPage() {
           <div className="bg-[#fcfbf9] border border-[#eae6de] overflow-hidden group hover:border-[#a87948] transition-colors flex flex-col">
             <div className="relative h-60 w-full overflow-hidden bg-[#24221e]">
               <Image
-                src="/gallery/20260525_115302.jpg"
+                src="/gallery/20260525_115302.webp"
                 alt="1,20m bis 1,80m langes Lichtmonument"
                 fill
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -282,7 +282,7 @@ export default function UeberUnsPage() {
           <div className="bg-[#fcfbf9] border border-[#eae6de] overflow-hidden group hover:border-[#a87948] transition-colors flex flex-col">
             <div className="relative h-60 w-full overflow-hidden bg-[#24221e]">
               <Image
-                src="/gallery/20251122_135500.jpg"
+                src="/gallery/20251122_135500.webp"
                 alt="Smarte LED-Steuerung per App oder Sprache"
                 fill
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -310,7 +310,7 @@ export default function UeberUnsPage() {
           <div className="bg-[#fcfbf9] border border-[#eae6de] overflow-hidden group hover:border-[#a87948] transition-colors flex flex-col">
             <div className="relative h-60 w-full overflow-hidden bg-[#24221e]">
               <Image
-                src="/gallery/Designer.png"
+                src="/gallery/Designer.webp"
                 alt="Illuminierte Holzwerbetafeln & Epoxidharzlampen"
                 fill
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -338,7 +338,7 @@ export default function UeberUnsPage() {
           <div className="bg-[#fcfbf9] border border-[#eae6de] overflow-hidden group hover:border-[#a87948] transition-colors flex flex-col">
             <div className="relative h-60 w-full overflow-hidden bg-[#24221e]">
               <Image
-                src="/gallery/1790141401993.png"
+                src="/gallery/1790141401993.webp"
                 alt="Personalisierte Unikate und maßgeschneiderte Holzkonstruktionen"
                 fill
                 sizes="(max-width: 768px) 100vw, 25vw"
