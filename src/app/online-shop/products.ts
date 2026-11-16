@@ -164,7 +164,7 @@ export const PRODUCTS: Record<string, ProductData> = {
     artNo: 'FFH-LB-BSG',
     shortTitle: 'Erzgebirgs-Lichtbogen »Bergstadt Schneeberg«',
     title:
-      'Traditioneller Erzgebirgs-Lichtbogen »Bergstadt Schneeberg« – Handgravierte Acrylglaskunst auf massivem Eichensockel',
+      'Traditioneller Erzgebirgs-Lichtbogen »Bergstadt Schneeberg« – Gravierte Acrylglaskunst auf massivem Eichensockel',
     subtitle: 'Handgefertigt von Stephan Tautenhahn in 08289 Schneeberg OT Lindenau',
     price: 115.0, // 115,00 € zzgl. Versand
     badge: 'Klassik-Edition · Eiche massiv',
@@ -256,7 +256,7 @@ export const PRODUCTS: Record<string, ProductData> = {
     artNo: 'FFH-LB-GAT',
     shortTitle: 'Erzgebirgs-Lichtbogen »Glück Auf – Tradition«',
     title:
-      'Traditioneller Erzgebirgs-Lichtbogen »Glück Auf – Tradition & Handwerk« – Handgravierte Acrylglaskunst auf massivem Eichensockel',
+      'Traditioneller Erzgebirgs-Lichtbogen »Glück Auf – Tradition & Handwerk« – Gravierte Acrylglaskunst auf massivem Eichensockel',
     subtitle: 'Handgefertigt von Stephan Tautenhahn in 08289 Schneeberg OT Lindenau',
     price: 99.0, // 99,00 € zzgl. Versand
     badge: 'Meisterstück-Edition · Eiche massiv',
@@ -416,7 +416,7 @@ export const PRODUCTS: Record<string, ProductData> = {
     id: 'neustaedtel',
     artNo: 'FFH-LB-NEU',
     shortTitle: 'Erzgebirgs-Lichtbogen »Neustädtel«',
-    title: 'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Handgravierte Acrylglaskunst auf massivem Eichensockel',
+    title: 'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Gravierte Acrylglaskunst auf massivem Eichensockel',
     subtitle: 'Handgefertigt von Stephan Tautenhahn in 08289 Schneeberg OT Lindenau',
     price: 99.0, // 99,00 € zzgl. Versand
     badge: 'Ortsteil-Edition · Eiche massiv',

@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     const bergstadtSchneebergCatalogEntry = {
       name: 'Traditioneller Erzgebirgs-Lichtbogen »Bergstadt Schneeberg«',
       description:
-        'Traditioneller Erzgebirgs-Lichtbogen »Bergstadt Schneeberg« – Handgravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm) mit St. Wolfgangskirche, Rathaus & Ortspyramide, 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+        'Traditioneller Erzgebirgs-Lichtbogen »Bergstadt Schneeberg« – Gravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm) mit St. Wolfgangskirche, Rathaus & Ortspyramide, 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
       price: 11500,
       image: '/products/bergstadt-schneeberg/bild-1.jpg',
       priceId: process.env.STRIPE_PRICE_BERGSTADT_SCHNEEBERG,
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     const glueckAufTraditionCatalogEntry = {
       name: 'Traditioneller Erzgebirgs-Lichtbogen »Glück Auf – Tradition & Handwerk«',
       description:
-        'Traditioneller Erzgebirgs-Lichtbogen »Glück Auf – Tradition & Handwerk« – Handgravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm) mit Bergleuten, Holzschnitzer & Klöpplerin, 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+        'Traditioneller Erzgebirgs-Lichtbogen »Glück Auf – Tradition & Handwerk« – Gravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm) mit Bergleuten, Holzschnitzer & Klöpplerin, 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
       price: 9900,
       image: '/products/glueck-auf-tradition/bild-1.jpg',
       priceId: process.env.STRIPE_PRICE_GLUECK_AUF_TRADITION,
@@ -72,7 +72,7 @@ export async function POST(req: Request) {
       'neustaedtel': {
         name: 'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel«',
         description:
-          'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Handgravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm), 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+          'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Gravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm), 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
         price: 9900,
         image: '/products/neustaedtel/bild-1.jpg',
         priceId: process.env.STRIPE_PRICE_NEUSTAEDTEL,
@@ -129,7 +129,7 @@ export async function POST(req: Request) {
       'neustaedtel-lichtbogen': {
         name: 'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel«',
         description:
-          'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Handgravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm), 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+          'Traditioneller Erzgebirgs-Lichtbogen »Neustädtel« – Gravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm), 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
         price: 9900,
         image: '/products/neustaedtel/bild-1.jpg',
         priceId: process.env.STRIPE_PRICE_NEUSTAEDTEL,
