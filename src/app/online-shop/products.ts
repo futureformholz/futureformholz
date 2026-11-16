@@ -168,6 +168,8 @@ export const PRODUCTS: Record<string, ProductData> = {
     subtitle: 'Handgefertigt von Stephan Tautenhahn in 08289 Schneeberg OT Lindenau',
     price: 115.0, // 115,00 € zzgl. Versand
     badge: 'Klassik-Edition · Eiche massiv',
+    youtubeId: 'Fe98a_042Ms',
+    youtubeAspect: '9:16',
     images: [
       {
         src: '/products/bergstadt-schneeberg/bild-1.jpg',
