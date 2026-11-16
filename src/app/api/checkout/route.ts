@@ -23,6 +23,24 @@ export async function POST(req: Request) {
     const productId = body.productId || 'erzgebirgs-lichtbogen';
     const isPickup = body.shippingOption === 'pickup';
 
+    const bergstadtSchneebergCatalogEntry = {
+      name: 'Traditioneller Erzgebirgs-Lichtbogen »Bergstadt Schneeberg«',
+      description:
+        'Traditioneller Erzgebirgs-Lichtbogen »Bergstadt Schneeberg« – Handgravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm) mit St. Wolfgangskirche, Rathaus & Ortspyramide, 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+      price: 11500,
+      image: '/products/bergstadt-schneeberg/bild-1.jpg',
+      priceId: process.env.STRIPE_PRICE_BERGSTADT_SCHNEEBERG,
+    };
+
+    const glueckAufTraditionCatalogEntry = {
+      name: 'Traditioneller Erzgebirgs-Lichtbogen »Glück Auf – Tradition & Handwerk«',
+      description:
+        'Traditioneller Erzgebirgs-Lichtbogen »Glück Auf – Tradition & Handwerk« – Handgravierte Acrylglaskunst auf massivem Eichensockel (55 × 4 × 4 cm) mit Bergleuten, Holzschnitzer & Klöpplerin, 12V warmweiße LED inkl. Netzteil. Lieferzeit: ca. 14 Tage.',
+      price: 9900,
+      image: '/products/glueck-auf-tradition/bild-1.jpg',
+      priceId: process.env.STRIPE_PRICE_GLUECK_AUF_TRADITION,
+    };
+
     const productCatalog: Record<
       string,
       {
@@ -41,6 +59,8 @@ export async function POST(req: Request) {
         image: '/products/schneeberg-555/schneeberg-555-1.jpg',
         priceId: process.env.STRIPE_PRICE_SCHNEEBERG_555,
       },
+      'bergstadt-schneeberg': bergstadtSchneebergCatalogEntry,
+      'glueck-auf-tradition': glueckAufTraditionCatalogEntry,
       'glueck-auf-panoramen': {
         name: 'Traditioneller Erzgebirgs-Schwibbogen »Glück Auf – Panoramen«',
         description:
@@ -114,6 +134,8 @@ export async function POST(req: Request) {
         image: '/products/neustaedtel/bild-1.jpg',
         priceId: process.env.STRIPE_PRICE_NEUSTAEDTEL,
       },
+      'bergstadt-schneeberg-lichtbogen': bergstadtSchneebergCatalogEntry,
+      'glueck-auf-tradition-lichtbogen': glueckAufTraditionCatalogEntry,
     };
 
     const selectedProduct =
